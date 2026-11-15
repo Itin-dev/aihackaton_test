@@ -25,6 +25,8 @@ downloads/
 eggs/
 .eggs/
 lib/
+# Frontend helpers (shadcn `cn`) live in apps/web/src/lib; the Python rule must not hide them.
+!apps/web/src/lib/
 lib64/
 parts/
 sdist/
