@@ -43,6 +43,11 @@ if bash scripts/check-root-layout.sh; then
 else
   fail "root allowlist"
 fi
+if bash scripts/check-ignored-sources.sh; then
+  pass "no git-ignored source files"
+else
+  fail "git-ignored source files"
+fi
 
 print_section "2  SECRETS SCAN"
 if bash scripts/check-secrets.sh "$REPO_ROOT"; then
