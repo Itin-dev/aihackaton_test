@@ -15,6 +15,10 @@ Team repository for the [Powercoders Hackathon "AI for Access"](https://hackatho
 Tools: Claude Code (agentic coding), Figma (design), Discord (communication),
 OpenRouter (AI backend), `gh` CLI (GitHub).
 
+Figma boards: [Brain-Storming](https://www.figma.com/board/u8YyBh0deFEbRGSNhzfKJB/Brain-Storming?node-id=891-131)
+· [Persona](https://www.figma.com/board/0xhOoQCvKNhARWytHY9IFa/Persona?node-id=0-1)
+· [Design-Project](https://www.figma.com/design/oOu7PPG4eIaWZPFVOELCCI/Design-Project?node-id=0-1) (final app design)
+
 ## Quick start
 
 ```bash

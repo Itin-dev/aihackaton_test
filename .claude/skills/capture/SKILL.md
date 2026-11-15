@@ -22,6 +22,28 @@ The first word of the prompt selects the mode (the `capture_trigger.py` hook als
 
 If no trigger word is present but the user clearly asks for one of these, pick the matching mode.
 
+## Team resources
+
+| Resource | Link | Use |
+|---|---|---|
+Three Figma files, one role each. Figma is where the team thinks and designs; the GitHub board
+is where work is tracked. Content flows **Figma → GitHub issues**, never the other way.
+
+| Role | File | Contents | Becomes on GitHub |
+|---|---|---|---|
+| Brainstorming source | [Brain-Storming](https://www.figma.com/board/u8YyBh0deFEbRGSNhzfKJB/Brain-Storming?node-id=891-131) (FigJam) | Raw ideas, sticky notes, clusters, user flows | `idea` issues |
+| Personas | [Persona](https://www.figma.com/board/0xhOoQCvKNhARWytHY9IFa/Persona?node-id=0-1) (FigJam) | Target users, needs, pain points | Referenced as "Target user" in ideas and tickets |
+| Final app design | [Design-Project](https://www.figma.com/design/oOu7PPG4eIaWZPFVOELCCI/Design-Project?node-id=0-1) (Figma Design) | Screens and components — source of truth for the UI | `area:fe` / `area:design` tickets, one per screen |
+
+When an issue refers to a Figma file ("on the board", "the sticky about …", "our persona …",
+"the result screen"), add a `**Figma:** <link>` line to the body. Pick the file by role
+(personas → Persona, screens / UI → Design-Project, everything else → Brain-Storming) unless
+the speaker gives a more specific frame link.
+
+To transfer Figma content, read it in the chat session through the `figma` MCP server
+(`.mcp.json`; each teammate signs in once via `/mcp`), then create the issues with this skill.
+Example: "Ticket: one issue per screen in Design-Project" or "Idea: the stickies in section X".
+
 ## Normalize the input first
 
 1. Drop the trigger word, filler ("um", "so basically", "like") and repetitions.
