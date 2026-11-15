@@ -1,5 +1,7 @@
 # Deploy (Vercel)
 
+Production: <https://aihackatontest.vercel.app> (health: `/api/health`).
+
 One Vercel project serves the whole app:
 
 | Part | Served as | Source |
@@ -26,6 +28,12 @@ Branch protection only lets green PRs into `main`, so production always gets val
 2. Project → Settings → Environment Variables: `OPENROUTER_API_KEY` (and optionally
    `OPENROUTER_MODEL`) for Production and Preview.
 3. Deploy, then check `https://<project>.vercel.app/api/health` → `{"status":"ok"}`.
+
+## Preview access
+
+Preview URLs are behind Vercel Authentication by default: only members of the Vercel account can
+open them. To share previews with teammates or the jury, turn it off under Project → Settings →
+Deployment Protection (the API holds no user data; the OpenRouter key stays server-side).
 
 ## Limits to keep in mind
 
