@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- Cursor tooling (`.cursor/` rules, hooks, subagents, MCP example) and the `suggesting-cursor-hooks` skill
+- Continue skill mirrors (`.continue/`) and Copilot instructions (`.github/copilot-instructions.md`) — Claude Code only
+
+### Changed
+
+- `AGENTS.md` → `CLAUDE.md`; skills moved `.agents/skills/` → `.claude/skills/` (native Claude Code location)
+- `install-recommended-skills.sh` installs into `.claude/skills/` (`--agent claude-code --copy`)
+
 ### Fixed
 
 - ShellCheck SC2034 in `get-push-changed-files.sh`; local validate now requires shellcheck (CI parity) via `scripts/ensure-shellcheck.sh`

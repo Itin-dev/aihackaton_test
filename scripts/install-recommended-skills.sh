@@ -17,15 +17,13 @@ install_one() {
   local source="$1"
   local skill="$2"
   echo "→ $source ($skill)"
-  npx --yes skills add "$source" --skill "$skill" -y
+  npx --yes skills add "$source" --skill "$skill" --agent claude-code --copy -y
 }
 
 install_one addyosmani/agent-skills test-driven-development
 install_one addyosmani/agent-skills security-and-hardening
 install_one addyosmani/agent-skills planning-and-task-breakdown
 install_one anthropics/skills skill-creator
-install_one spencerpauly/awesome-cursor-skills suggesting-cursor-hooks
 
-echo "Done. Check skills-lock.json / .agents/skills for installed skills."
-echo "Code review: use .cursor/agents/code-reviewer.md + caveman-review."
-echo "Registries: https://skills.sh https://claude-plugins.dev https://cursor.directory"
+echo "Done. Check skills-lock.json / .claude/skills for installed skills."
+echo "Registries: https://skills.sh https://claude-plugins.dev"
