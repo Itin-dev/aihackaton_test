@@ -14,7 +14,7 @@ export default function Footer({ commit, env, repo = 'Itin-dev/aihackaton_test' 
       {commit ? (
         <a
           href={`https://github.com/${repo}/commit/${commit}`}
-          className="font-mono underline hover:text-gray-600"
+          className="font-mono underline hover:text-gray-200"
         >
           {commit.slice(0, 7)}
         </a>
