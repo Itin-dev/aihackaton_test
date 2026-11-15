@@ -18,7 +18,8 @@ Do not invent a second check path.
 
 - `main` is protected: changes land via PR, and the `validate` check must pass.
 - No reviews are required. Merge your own PR once `validate` is green (`gh pr merge --squash --delete-branch`).
-- Every merge to `main` is announced in Discord by `.github/workflows/notify-discord.yml`.
+- Discord gets a message when a PR is opened (or leaves draft) and when it is merged to `main`
+  (`.github/workflows/notify-discord.yml`). Draft PRs stay quiet until marked ready.
 
 ### Discord notification setup (one time)
 
