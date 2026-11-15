@@ -32,7 +32,8 @@ Without the secret, the workflow skips silently.
 ## Team questions channel
 
 `bash scripts/ask-team.sh "<question>"` posts a question to a dedicated Discord channel,
-tagged with the asker's name and current branch. It is send-only (an incoming webhook):
+shown as a card with the asker's name, GitHub avatar (via `gh`), a per-person color and the
+current branch, so teammates are easy to tell apart. It is send-only (an incoming webhook):
 teammates answer in Discord as usual. `--dry-run` prints the message without sending it.
 
 Mentions are disabled (`@everyone` cannot ping) and messages are capped at 2000 characters.

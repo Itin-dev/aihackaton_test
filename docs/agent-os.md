@@ -19,6 +19,7 @@ Project skills (always present):
 | `generic-docker` | Microservices + Compose |
 | `generic-cleanliness` | Tidy repo checklist |
 | `capture` | Voice/typed input → GitHub issues (decisions, tickets, ideas, recap) |
+| `ask-team` | Questions the user can't answer → team Discord channel (`scripts/ask-team.sh`) |
 | `caveman*` / `cavecrew` | Token efficiency |
 
 ### Recommended community skills
