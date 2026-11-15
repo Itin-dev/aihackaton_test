@@ -41,22 +41,22 @@ export default function App() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Ask something…"
-          className="flex-1 rounded-lg border border-gray-300 px-4 py-2"
+          className="flex-1 rounded-lg border border-gray-700 bg-gray-900 px-4 py-2 text-gray-100 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none"
         />
         <button
           type="submit"
           disabled={!message.trim() || status === 'loading'}
-          className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white disabled:opacity-50"
+          className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-500 disabled:opacity-50"
         >
           {status === 'loading' ? 'Sending…' : 'Send'}
         </button>
       </form>
       {error && (
-        <p role="alert" className="rounded-lg bg-red-50 p-4 text-red-700">
+        <p role="alert" className="rounded-lg border border-red-900 bg-red-950 p-4 text-red-300">
           {error}
         </p>
       )}
-      {reply && <p className="whitespace-pre-wrap rounded-lg bg-gray-50 p-4">{reply}</p>}
+      {reply && <p className="whitespace-pre-wrap rounded-lg bg-gray-900 p-4">{reply}</p>}
       <Footer
         commit={import.meta.env.VITE_COMMIT_SHA ?? ''}
         env={import.meta.env.VITE_DEPLOY_ENV ?? ''}
