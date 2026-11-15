@@ -12,6 +12,9 @@ on:
       - "**/pyproject.toml"
       - "**/requirements*.txt"
       - ".github/workflows/security.yml"
+  pull_request:
+    paths:
+      - ".github/workflows/security.yml"
 
 permissions:
   contents: read
@@ -24,9 +27,15 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v3
+      # The gitleaks GitHub Action needs a paid license for organisation repos;
+      # the CLI itself is free (MIT), so run it directly.
+      - name: Scan git history for secrets
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_VERSION: 8.21.2
+        run: |
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" \
+            | tar -xz gitleaks
+          ./gitleaks git . --redact --no-banner --verbose
 
   dependency-audit:
     runs-on: ubuntu-latest
