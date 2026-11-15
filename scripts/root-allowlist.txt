@@ -10,6 +10,9 @@
 .env.example
 .gitignore
 .mcp.json
+vercel.json
+requirements.txt
+api
 .pre-commit-config.yaml
 CLAUDE.md
 CONTRIBUTING.md

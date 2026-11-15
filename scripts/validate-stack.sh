@@ -11,6 +11,12 @@ echo "  api: ruff + pytest (services/api)"
   uv run --frozen ruff check .
   uv run --frozen ruff format --check .
   uv run --frozen pytest -q
+  # Vercel installs from the root requirements.txt; it must match uv.lock.
+  if ! uv export --frozen --no-dev --no-hashes --no-emit-project --no-header -q \
+    | diff -q - ../../requirements.txt >/dev/null; then
+    echo "  requirements.txt is out of date — run: make requirements" >&2
+    exit 1
+  fi
 )
 
 echo "  web: oxlint + vitest + tsc + build (apps/web)"

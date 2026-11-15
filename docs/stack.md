@@ -17,6 +17,10 @@ make web   # http://localhost:5173  (proxies /api → :8000)
 
 `.env` at the repo root holds `OPENROUTER_API_KEY` (and optionally `OPENROUTER_MODEL`).
 
+## Deploy
+
+Vercel: frontend as static files, FastAPI as a serverless function — see [deploy.md](deploy.md).
+
 ## Conventions
 
 - All HTTP routes live under `/api` so the frontend proxy and a single deploy stay simple.
@@ -39,4 +43,5 @@ cd services/api && uv add <package>        # dev-only: uv add --dev <package>
 npm --prefix apps/web install <package>    # dev-only: add -D
 ```
 
-Commit the lockfiles (`uv.lock`, `package-lock.json`). Teammates get them via `bash scripts/bootstrap.sh`.
+Commit the lockfiles (`uv.lock`, `package-lock.json`). After changing backend dependencies, run
+`make requirements` (Vercel installs from the root `requirements.txt`). Teammates get them via `bash scripts/bootstrap.sh`.
