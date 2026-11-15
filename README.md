@@ -51,6 +51,13 @@ In Claude Code, dictate (or type) a prompt that starts with a trigger word:
 Speak any language; issues are written in English. One-time setup: `bash scripts/setup-labels.sh`.
 How it works: [.claude/skills/capture/SKILL.md](.claude/skills/capture/SKILL.md).
 
+## New project from this template
+
+1. GitHub → **Use this template** → create the repo in `Itin-dev`.
+2. Clone it, then once: `bash scripts/setup-repo.sh` (merge rules, branch protection, labels,
+   board, Discord secret — GitHub does not copy settings).
+3. Update the hackathon details in this README and `PLAN.md`.
+
 ## Documentation
 
 Start at [docs/INDEX.md](docs/INDEX.md). Claude Code starts at [CLAUDE.md](CLAUDE.md).
