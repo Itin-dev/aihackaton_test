@@ -1,0 +1,30 @@
+{
+  "home": {
+    "title": "Find help in Lucerne",
+    "intro": "Choose your language and a topic. Free and anonymous, no registration.",
+    "language": "Language",
+    "topics": "Topics"
+  },
+  "theme": {
+    "label": "Color theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "topics": {
+    "work": "Work",
+    "housing": "Housing",
+    "health": "Health",
+    "language": "Language courses",
+    "documents": "Documents",
+    "money": "Money",
+    "children": "Children",
+    "daily-life": "Daily life",
+    "urgent": "Urgent help"
+  },
+  "topic": {
+    "back": "Back to topics",
+    "comingSoon": "Information about this topic is coming soon.",
+    "notFound": "Topic not found"
+  }
+}

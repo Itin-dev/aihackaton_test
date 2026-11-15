@@ -1,0 +1,30 @@
+{
+  "home": {
+    "title": "Hilfe in Luzern finden",
+    "intro": "Wähle deine Sprache und ein Thema. Kostenlos und anonym, ohne Registrierung.",
+    "language": "Sprache",
+    "topics": "Themen"
+  },
+  "theme": {
+    "label": "Farbschema",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System"
+  },
+  "topics": {
+    "work": "Arbeit",
+    "housing": "Wohnen",
+    "health": "Gesundheit",
+    "language": "Sprachkurse",
+    "documents": "Dokumente",
+    "money": "Geld",
+    "children": "Kinder",
+    "daily-life": "Alltag",
+    "urgent": "Dringende Hilfe"
+  },
+  "topic": {
+    "back": "Zurück zu den Themen",
+    "comingSoon": "Informationen zu diesem Thema folgen bald.",
+    "notFound": "Thema nicht gefunden"
+  }
+}

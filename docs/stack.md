@@ -5,7 +5,7 @@ Decided in [#19](https://github.com/Itin-dev/aihackaton_test/issues/19).
 | Part | Path | Tech |
 | --- | --- | --- |
 | Backend | `services/api/` | Python 3.12, FastAPI, uv, pytest, ruff |
-| Frontend | `apps/web/` | Vite, React, TypeScript, Tailwind v4, Vitest, oxlint |
+| Frontend | `apps/web/` | Vite, React, TypeScript, Tailwind v4, shadcn/ui, lucide-react, React Router, i18next, Vitest, oxlint |
 | AI | `services/api/app/llm.py` | OpenRouter via the `openai` SDK (OpenAI-compatible API) |
 
 ## Run locally
@@ -28,6 +28,15 @@ Vercel: frontend as static files, FastAPI as a serverless function — see [depl
 - Call LLMs only through the `get_llm` dependency — tests override it with a fake, so
   tests never hit the network or cost money.
 - Frontend calls relative URLs (`/api/...`), never `localhost:8000`.
+
+## Frontend UI
+
+- Components come from [shadcn/ui](https://ui.shadcn.com) (`npx shadcn add <name>` in `apps/web`,
+  RTL mode on); icons from `lucide-react`. Do not hand-roll a component shadcn already has.
+- Accessibility is required: semantic HTML, 44px+ touch targets, logical CSS (`ms-`/`me-`, not
+  `ml-`/`mr-`) so Arabic RTL works. Page tests run `axe-core` and must report no violations.
+- Languages: EN, DE, UK, AR in `src/i18n/locales/*.json`; switching language updates `<html lang dir>`.
+- Theme: light / dark / system (`src/features/theme`), stored on the device only.
 
 ## Tests (TDD)
 
