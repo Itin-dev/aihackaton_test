@@ -174,6 +174,11 @@ def test_missing_tiles_lists_tiles_without_entry():
     ]
 
 
+def test_shipped_knowledge_validates_and_covers_every_tile():
+    kb = load_knowledge()
+    assert missing_tiles(kb) == []
+
+
 def test_load_knowledge_reads_json_file(tmp_path):
     path = tmp_path / "knowledge.json"
     path.write_text(json.dumps(VALID), encoding="utf-8")
