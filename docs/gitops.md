@@ -36,21 +36,25 @@ Board: <https://github.com/orgs/Itin-dev/projects/1> — created and kept in syn
 Columns: Backlog → Todo → In progress → Review → Done. Areas are issue labels (`area:*`),
 not board fields, so there is one place to set them.
 
+New issues land in **Backlog**: they are proposals (often drafted by an agent) until the team
+agrees on scope and drags them to **Todo**. Only Todo tickets are picked up.
+
 Priorities are issue labels too: `P0` (demo must-have) → `P1` (jury wow) → `P2` (stretch).
 
 Card flow:
 
 | Event | Status | Mechanism |
 |-------|--------|-----------|
-| Issue created | Todo | built-in **Item added to project** |
+| Issue created | Backlog | built-in **Item added to project** |
+| Team agrees on scope | Todo | a person drags the card |
 | Work starts on #n | In progress | `bash scripts/start-task.sh <n>` (assigns, branches, moves card) |
 | PR with `Closes #n` opened | Review | built-in **Pull request linked to issue** |
 | PR merged / issue closed | Done | built-in **Pull request merged** + **Item closed** |
 
 Built-in workflows (board → ⋯ → Workflows) cannot be set through the API. Enable once:
 
-- **Auto-add to project:** filter `is:issue,pr is:open -label:decision` → status Todo
-- **Item added to project** → Todo
+- **Auto-add to project:** filter `is:issue,pr is:open -label:decision`
+- **Item added to project** → Backlog
 - **Pull request linked to issue** → Review
 - **Pull request merged** and **Item closed** → Done
 
