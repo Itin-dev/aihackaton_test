@@ -23,7 +23,7 @@ See [docs/using-the-template.md](docs/using-the-template.md).
 
 | Area | Contents |
 |------|----------|
-| Agent OS | `AGENTS.md`, `.agents/skills/`, `.cursor/rules`, hooks, subagents |
+| Agent OS | `AGENTS.md`, `.agents/skills/`, git hooks |
 | Automation | git hooks = CI, release-please, Dependabot, security workflow |
 | Layout | Empty `services/`, `apps/`, `packages/`, `tests/`, `src/` placeholders |
 | Docs | Modular entrypoints under [docs/INDEX.md](docs/INDEX.md) |

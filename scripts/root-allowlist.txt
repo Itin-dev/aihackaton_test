@@ -4,7 +4,6 @@
 .git
 .agents
 .continue
-.cursor
 .devcontainer
 .githooks
 .github

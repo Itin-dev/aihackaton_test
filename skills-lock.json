@@ -61,12 +61,6 @@
       "skillPath": "skills/skill-creator/SKILL.md",
       "computedHash": "5ea13a6d9f0d4bb694405d79acd00cadec0d21bb138c4dd10fcf3c500cb835c2"
     },
-    "suggesting-cursor-hooks": {
-      "source": "spencerpauly/awesome-cursor-skills",
-      "sourceType": "github",
-      "skillPath": "resources/suggesting-cursor-hooks/SKILL.md",
-      "computedHash": "ad9c88e14773b1b54efd5874dfcd9e01eb2eb5b66f0c044ac15b756ed0307787"
-    },
     "test-driven-development": {
       "source": "addyosmani/agent-skills",
       "sourceType": "github",

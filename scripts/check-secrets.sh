@@ -10,7 +10,6 @@ if grep -r -i -E "(password|secret|api_key|token).*=.*['\"][^'\"]{8,}['\"]" \
   --exclude="SKILL.md" --exclude="*.md" \
   --exclude-dir=".git" --exclude-dir=".venv" --exclude-dir="node_modules" \
   --exclude-dir=".pytest_cache" --exclude-dir=".agents" --exclude-dir=".continue" \
-  --exclude-dir=".cursor" \
   . 2>/dev/null \
   | grep -v "^[[:space:]]*#" \
   | grep -v "os.environ.get" \

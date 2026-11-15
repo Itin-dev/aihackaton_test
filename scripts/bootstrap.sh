@@ -60,7 +60,7 @@ fi
 # Git hooks via committed .githooks (do not use `pre-commit install` — conflicts with hooksPath)
 git config core.hooksPath .githooks
 chmod +x .githooks/pre-commit .githooks/pre-push .githooks/commit-msg 2>/dev/null || true
-chmod +x scripts/*.sh .cursor/hooks/*.sh 2>/dev/null || true
+chmod +x scripts/*.sh 2>/dev/null || true
 
 echo "git core.hooksPath → .githooks"
 

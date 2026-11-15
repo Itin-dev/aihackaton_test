@@ -1,6 +1,6 @@
 # Cleanliness and organization
 
-Mandatory contract for humans and agents. Also enforced via `.cursor/rules/generic-cleanliness.mdc` and `.agents/skills/generic-cleanliness/`.
+Mandatory contract for humans and agents. Also enforced via `.agents/skills/generic-cleanliness/`.
 
 ## Principles
 
@@ -22,7 +22,7 @@ Mandatory contract for humans and agents. Also enforced via `.cursor/rules/gener
 | `src/` | Single-app layout — use **or** `services/`, not both long-term |
 | `scripts/` | Automation invoked by hooks/CI (not ad-hoc tools) |
 | `docs/` | Modular documentation with [INDEX.md](INDEX.md) |
-| `.agents/`, `.cursor/` | Agent meta only — never application packages |
+| `.agents/` | Agent meta only — never application packages |
 
 ## Root allowlist
 

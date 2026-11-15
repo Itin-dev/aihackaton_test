@@ -1,6 +1,6 @@
 # Agent OS
 
-Skills, rules, hooks, subagents, MCP, and plugins for this template.
+Skills, hooks, and plugins for this template.
 
 ## Entrypoints
 
@@ -34,23 +34,19 @@ Installed by `bootstrap.sh --with-recommended-skills` via the [skills CLI](https
 | `security-and-hardening` | addyosmani/agent-skills |
 | `planning-and-task-breakdown` | addyosmani/agent-skills |
 | `skill-creator` | [anthropics/skills](https://github.com/anthropics/skills) |
-| `suggesting-cursor-hooks` | [spencerpauly/awesome-cursor-skills](https://github.com/spencerpauly/awesome-cursor-skills) |
 
-Code review: use `.cursor/agents/code-reviewer.md` and `caveman-review` (vendored).
+Code review: use `caveman-review` (vendored).
 
 Opt-in (stack recipes / as needed):
 
 - `performance` (addyosmani)
 - `backend-development`, `web-development`, `web-testing`, `cybersecurity` ([rubencr14/agent-skills](https://github.com/rubencr14/agent-skills))
 - `frontend-design`, `mcp-builder` (anthropics)
-- `suggesting-cursor-rules`, `suggesting-skills` (spencerpauly)
 
 ### Discovery registries
 
 - [skills.sh](https://skills.sh)
 - [claude-plugins.dev](https://claude-plugins.dev)
-- [cursor.directory](https://cursor.directory)
-- [PatrickJS/awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules)
 
 Pin installs in `skills-lock.json` when the CLI writes one.
 
@@ -60,41 +56,12 @@ Docs and skills are guidance. **Enforcement** is layered so agents cannot casual
 
 | Layer | What | Can model ignore? |
 |-------|------|-------------------|
-| Cursor `beforeShellExecution` + `failClosed` | `enforce-git-flow.sh` — deny commit on `main`, deny `--no-verify`, ask/deny force-push | No (deterministic) |
-| Git hooks (`.githooks`) | `validate.sh` on commit/push; Conventional Commits | No (unless user forces outside Cursor) |
-| Always-on rules | `generic-binding-flow`, `generic-core`, `generic-cleanliness` | Soft — but binding language + sessionStart context |
+| Git hooks (`.githooks`) | `validate.sh` on commit/push; Conventional Commits | No (unless bypassed with `--no-verify`) |
+| Branch protection on `main` | PR required, `validate` CI check must pass | No (server-side) |
+| `AGENTS.md` | Binding workflow instructions | Soft |
 | Skills / docs | Procedures and checklists | Soft — use for how-to |
 
-If an agent tries to skip validation or work on `main`, the shell hook should block it. Prefer fixing the failure over disabling hooks.
-
-## Rules (`.cursor/rules/`)
-
-| Rule | Apply |
-|------|-------|
-| `generic-binding-flow.mdc` | always — MUST/NEVER workflow; no rationalization |
-| `generic-core.mdc` | always — AGENTS, branch, secrets, hooks |
-| `generic-cleanliness.mdc` | always — tidy layout |
-| `generic-docs.mdc` | `docs/**` — modular docs |
-
-## Hooks (`.cursor/hooks.json`)
-
-| Event | Behaviour |
-|-------|-----------|
-| `sessionStart` | Binding context + self-heal `core.hooksPath` |
-| `beforeShellExecution` (`git`) | **failClosed** enforce-git-flow (block shortcuts) |
-| `afterFileEdit` | Auto-format edited file |
-
-## Subagents (`.cursor/agents/`)
-
-- `code-reviewer.md` — cleanliness, SoC, security
-- `debugger.md` — evidence-first debugging
-
-## MCP
-
-- Commit only `.cursor/mcp.json.example` (no secrets).
-- Copy to `.cursor/mcp.json` and use `${env:TOKEN}` interpolation.
-- User-level MCP stays in `~/.cursor/mcp.json`.
-- Cursor Automations need dashboard MCP, not only project mcp.json.
+If an agent tries to skip validation or push to `main`, git hooks and branch protection block it. Prefer fixing the failure over disabling hooks.
 
 ## Plugins
 
