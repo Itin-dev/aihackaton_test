@@ -9,12 +9,12 @@ type Props = {
 export default function Footer({ commit, env, repo = 'Itin-dev/aihackaton_test' }: Props) {
   const label = env && env !== 'production' ? ` · ${env}` : ''
   return (
-    <footer className="mt-auto pt-6 text-center text-xs text-gray-400">
+    <footer className="mt-auto pt-6 text-center text-xs text-muted-foreground">
       Version{' '}
       {commit ? (
         <a
           href={`https://github.com/${repo}/commit/${commit}`}
-          className="font-mono underline hover:text-gray-200"
+          className="font-mono underline hover:text-foreground"
         >
           {commit.slice(0, 7)}
         </a>

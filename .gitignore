@@ -24,13 +24,15 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
+# Python packaging dirs are anchored to the root: a bare `lib/` also hid apps/web/src/lib.
+# scripts/check-ignored-sources.sh fails validation if a rule hides source files again.
+/lib/
+/lib64/
+/parts/
+/sdist/
+/var/
+/wheels/
+/share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg

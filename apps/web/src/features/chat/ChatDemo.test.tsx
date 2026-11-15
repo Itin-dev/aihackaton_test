@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import App from './App'
+import ChatDemo from './ChatDemo'
 
 function mockFetch(response: Partial<Response> & { json?: () => Promise<unknown> }) {
   const fn = vi.fn().mockResolvedValue({ ok: true, ...response })
@@ -11,10 +11,10 @@ function mockFetch(response: Partial<Response> & { json?: () => Promise<unknown>
 
 afterEach(() => vi.unstubAllGlobals())
 
-describe('App', () => {
+describe('ChatDemo', () => {
   it('sends the message to the API and shows the reply', async () => {
     const fetch = mockFetch({ json: async () => ({ reply: 'Hi there' }) })
-    render(<App />)
+    render(<ChatDemo />)
 
     await userEvent.type(screen.getByLabelText(/message/i), 'Hello')
     await userEvent.click(screen.getByRole('button', { name: /send/i }))
@@ -26,7 +26,7 @@ describe('App', () => {
 
   it('shows the API error detail', async () => {
     mockFetch({ ok: false, json: async () => ({ detail: 'OPENROUTER_API_KEY is not set' }) })
-    render(<App />)
+    render(<ChatDemo />)
 
     await userEvent.type(screen.getByLabelText(/message/i), 'Hello')
     await userEvent.click(screen.getByRole('button', { name: /send/i }))
@@ -35,7 +35,7 @@ describe('App', () => {
   })
 
   it('does not send an empty message', () => {
-    render(<App />)
+    render(<ChatDemo />)
     expect(screen.getByRole('button', { name: /send/i })).toBeDisabled()
   })
 })
