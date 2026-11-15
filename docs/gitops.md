@@ -29,6 +29,22 @@ Do not invent a second check path.
 
 Without the secret, the workflow skips silently.
 
+## Team questions channel
+
+`bash scripts/ask-team.sh "<question>"` posts a question to a dedicated Discord channel,
+tagged with the asker's name and current branch. It is send-only (an incoming webhook):
+teammates answer in Discord as usual. `--dry-run` prints the message without sending it.
+
+Mentions are disabled (`@everyone` cannot ping) and messages are capped at 2000 characters.
+Never put secrets, tokens or personal data in a question.
+
+### Setup (one time per teammate)
+
+1. Discord: create the channel (e.g. `#agent-questions`) → channel settings → Integrations →
+   Webhooks → New Webhook → copy URL. One person does this and shares the URL privately.
+2. Each teammate: add `DISCORD_QUESTIONS_WEBHOOK_URL=<url>` to their local `.env`.
+   The URL is a secret — anyone holding it can post to the channel. Never commit it.
+
 ## Project board
 
 Board: <https://github.com/orgs/Itin-dev/projects/1> — created and kept in sync by
