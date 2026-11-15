@@ -1,4 +1,5 @@
 import { type FormEvent, useState } from 'react'
+import Footer from './Footer'
 
 type Status = 'idle' | 'loading' | 'error'
 
@@ -56,6 +57,10 @@ export default function App() {
         </p>
       )}
       {reply && <p className="whitespace-pre-wrap rounded-lg bg-gray-50 p-4">{reply}</p>}
+      <Footer
+        commit={import.meta.env.VITE_COMMIT_SHA ?? ''}
+        env={import.meta.env.VITE_DEPLOY_ENV ?? ''}
+      />
     </main>
   )
 }
