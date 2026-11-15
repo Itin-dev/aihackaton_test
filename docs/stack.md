@@ -35,7 +35,7 @@ Vercel: frontend as static files, FastAPI as a serverless function — see [depl
   RTL mode on); icons from `lucide-react`. Do not hand-roll a component shadcn already has.
 - Accessibility is required: semantic HTML, 44px+ touch targets, logical CSS (`ms-`/`me-`, not
   `ml-`/`mr-`) so Arabic RTL works. Page tests run `axe-core` and must report no violations.
-- Languages: EN, DE, UK, AR in `src/i18n/locales/*.json`; switching language updates `<html lang dir>`.
+- Languages: EN, DE, UK, RU, AR in `src/i18n/locales/*.json`; switching language updates `<html lang dir>`.
 - Theme: light / dark / system (`src/features/theme`), stored on the device only.
 
 ## Tests (TDD)

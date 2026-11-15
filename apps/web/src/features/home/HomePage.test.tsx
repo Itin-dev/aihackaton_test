@@ -25,7 +25,7 @@ describe('HomePage', () => {
   it('offers the languages by their native names', () => {
     renderAt()
     const picker = screen.getByRole('group', { name: /language/i })
-    for (const name of ['English', 'Deutsch', 'Українська', 'العربية']) {
+    for (const name of ['English', 'Deutsch', 'Українська', 'Русский', 'العربية']) {
       expect(within(picker).getByRole('button', { name })).toBeInTheDocument()
     }
   })
@@ -43,6 +43,18 @@ describe('HomePage', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Hilfe in Luzern finden')
     expect(screen.getByRole('link', { name: /wohnen/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Deutsch' })).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  it('offers Russian', async () => {
+    renderAt()
+    await userEvent.click(screen.getByRole('button', { name: 'Русский' }))
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Найдите помощь в Люцерне')
+    expect(document.documentElement).toHaveAttribute('lang', 'ru')
+  })
+
+  it('describes each topic in a short line', () => {
+    renderAt()
+    expect(screen.getByRole('link', { name: /housing/i })).toHaveTextContent(/find a flat/i)
   })
 
   it('switches the page to right-to-left for Arabic', async () => {

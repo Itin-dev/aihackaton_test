@@ -13,8 +13,12 @@ import {
 
 export type Topic = { id: string; Icon: LucideIcon; urgent?: boolean }
 
-/** Home screen topics; labels live in the locale files under `topics.<id>`. */
+/**
+ * Home screen topics; labels live in the locale files under `topics.<id>` and `topicHints.<id>`.
+ * Urgent help comes first so it is found without scrolling.
+ */
 export const TOPICS: readonly Topic[] = [
+  { id: 'urgent', Icon: Siren, urgent: true },
   { id: 'work', Icon: Briefcase },
   { id: 'housing', Icon: House },
   { id: 'health', Icon: HeartPulse },
@@ -23,7 +27,6 @@ export const TOPICS: readonly Topic[] = [
   { id: 'money', Icon: Wallet },
   { id: 'children', Icon: Baby },
   { id: 'daily-life', Icon: ShoppingBasket },
-  { id: 'urgent', Icon: Siren, urgent: true },
 ]
 
 export function findTopic(id: string | undefined) {

@@ -4,6 +4,7 @@ import { initReactI18next } from 'react-i18next'
 import ar from './locales/ar.json'
 import de from './locales/de.json'
 import en from './locales/en.json'
+import ru from './locales/ru.json'
 import uk from './locales/uk.json'
 
 /** Supported languages, labelled in their own language so people recognise them. */
@@ -11,6 +12,7 @@ export const LANGUAGES = [
   { code: 'en', name: 'English', dir: 'ltr' },
   { code: 'de', name: 'Deutsch', dir: 'ltr' },
   { code: 'uk', name: 'Українська', dir: 'ltr' },
+  { code: 'ru', name: 'Русский', dir: 'ltr' },
   { code: 'ar', name: 'العربية', dir: 'rtl' },
 ] as const
 
@@ -29,7 +31,13 @@ void i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    resources: { en: { translation: en }, de: { translation: de }, uk: { translation: uk }, ar: { translation: ar } },
+    resources: {
+      en: { translation: en },
+      de: { translation: de },
+      uk: { translation: uk },
+      ru: { translation: ru },
+      ar: { translation: ar },
+    },
     supportedLngs: LANGUAGES.map((l) => l.code),
     nonExplicitSupportedLngs: true,
     fallbackLng: 'en',
