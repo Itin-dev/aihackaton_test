@@ -1,6 +1,6 @@
 # Generic — Agent Entrypoint
 
-Starting point for AI agents (Cursor, Continue, Claude Code, Copilot) in repositories created from this template.
+Starting point for Claude Code in repositories created from this template. Claude Code is the only supported agent; project skills live in `.claude/skills/` and load automatically.
 
 ## What this project is
 
@@ -15,16 +15,16 @@ Starting point for AI agents (Cursor, Continue, Claude Code, Copilot) in reposit
 | [docs/cleanliness-and-organization.md](docs/cleanliness-and-organization.md) | Clean & organized contract (mandatory) |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Setup, branch workflow |
 | [CHANGELOG.md](CHANGELOG.md) | Keep a Changelog + SemVer |
-| `.agents/skills/generic-project/` | Layout, SoC, libraries-first |
-| `.agents/skills/generic-workflow/` | Git flow, hooks (auto) |
-| `.agents/skills/generic-versioning/` | SemVer / release-please |
-| `.agents/skills/generic-cleanliness/` | Tidy repo checklist |
-| `.agents/skills/generic-language/` | English-only repo content |
+| `.claude/skills/generic-project/` | Layout, SoC, libraries-first |
+| `.claude/skills/generic-workflow/` | Git flow, hooks (auto) |
+| `.claude/skills/generic-versioning/` | SemVer / release-please |
+| `.claude/skills/generic-cleanliness/` | Tidy repo checklist |
+| `.claude/skills/generic-language/` | English-only repo content |
 
 ## Language (mandatory)
 
 **English only** in code, comments, docs, commits, and skills you write.
-Read `.agents/skills/generic-language/SKILL.md`. User chat may be any language; repo files must be English.
+Read `.claude/skills/generic-language/SKILL.md`. User chat may be any language; repo files must be English.
 
 ## Token efficiency skills
 
@@ -42,8 +42,8 @@ Read `.agents/skills/generic-language/SKILL.md`. User chat may be any language; 
 Installed by `bootstrap.sh --with-recommended-skills` (pinned in `skills-lock.json` when present):
 
 - `test-driven-development`, `security-and-hardening`, `planning-and-task-breakdown`
-- `skill-creator`, `suggesting-cursor-hooks`
-- Code review: `.cursor/agents/code-reviewer.md` + `caveman-review`
+- `skill-creator`
+- Code review: `caveman-review`
 
 See [docs/agent-os.md](docs/agent-os.md) for sources and registries.
 
@@ -57,8 +57,7 @@ tests/            # integration / repo-level tests
 src/              # optional single-app layout (use OR services/, not both)
 scripts/          # validate, bootstrap, secrets (invoked by hooks/CI)
 docs/             # modular docs — start at docs/INDEX.md
-.agents/skills/   # agent skills
-.cursor/          # rules, hooks, agents, mcp example
+.claude/skills/   # Claude Code skills
 docker/           # compose example (infra placeholders)
 ```
 
@@ -66,7 +65,7 @@ docker/           # compose example (infra placeholders)
 
 ### Binding (non-negotiable)
 
-Cursor **rules** (`generic-binding-flow`, `generic-core`, `generic-cleanliness`) plus **hooks** (`enforce-git-flow.sh`, git hooks) enforce the flow. Agents must not invent shortcuts, skip hooks, or commit on `main`. See [docs/agent-os.md](docs/agent-os.md#enforcement).
+Git hooks (`.githooks/`) plus branch protection on `main` (PR + passing `validate` check) enforce the flow. Agents must not invent shortcuts, skip hooks, or commit on `main`. See [docs/agent-os.md](docs/agent-os.md#enforcement).
 
 ### 0. Branch first
 
@@ -109,15 +108,3 @@ CI runs the same `scripts/validate.sh`. Releases are automated via **release-ple
 ## Service paths (skip app gates)
 
 Changes only under paths in `scripts/service-paths.list` skip app-oriented gates.
-
-## Cursor hooks
-
-- `sessionStart` → injects AGENTS context + self-heals git hooks
-- `afterFileEdit` → auto-format edited file
-- `beforeShellExecution` → push guard for `main`
-
-See `.cursor/hooks.json`.
-
-## Recommended Marketplace plugins
-
-Install via Cursor Marketplace as needed (not committed): GitHub, browser tooling, and any team MCP plugins your org uses. Prefer project `.cursor/mcp.json` from `.cursor/mcp.json.example` with `${env:...}` secrets.

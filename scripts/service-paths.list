@@ -2,16 +2,14 @@
 # One pattern per line. Matches use path prefix or glob (*, **).
 
 .github/**
-.agents/**
-.continue/**
-.cursor/**
+.claude/**
 .githooks/**
 .devcontainer/**
 scripts/**
 docs/**
 docker/**
 skills-lock.json
-AGENTS.md
+CLAUDE.md
 README.md
 CONTRIBUTING.md
 CHANGELOG.md
