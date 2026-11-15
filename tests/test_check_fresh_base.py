@@ -75,6 +75,42 @@ class CheckFreshBaseTest(unittest.TestCase):
         self.assertEqual(run_check(self.me, old).returncode, 1)
         self.assertEqual(run_check(self.me, "HEAD").returncode, 0)
 
+    def install_hooks(self):
+        """Commit the real hooks + script into the test repo, as after this kit is merged."""
+        repo_root = SCRIPT.parent.parent
+        for rel in (".githooks/post-checkout", "scripts/check-fresh-base.sh"):
+            target = self.me / rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text((repo_root / rel).read_text())
+            target.chmod(0o755)
+        git(self.me, "add", ".")
+        git(self.me, "commit", "-q", "-m", "hooks")
+        git(self.me, "push", "-q", "origin", "main")
+        git(self.mate, "pull", "-q", "origin", "main")
+
+    def checkout_with_hooks(self, *args: str) -> str:
+        result = subprocess.run(
+            ["git", "-c", "core.hooksPath=.githooks", "checkout", "-q", *args],
+            cwd=self.me,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        return result.stderr
+
+    def test_post_checkout_warns_on_new_branch_from_stale_main(self):
+        self.install_hooks()
+        self.teammate_merges_to_main()
+        self.assertIn("git pull origin main", self.checkout_with_hooks("-b", "feature/x"))
+
+    def test_post_checkout_silent_on_fresh_branch_and_existing_branch(self):
+        self.install_hooks()
+        self.assertEqual(self.checkout_with_hooks("-b", "feature/x"), "")
+        git(self.me, "commit", "-q", "--allow-empty", "-m", "my work")
+        self.checkout_with_hooks("main")
+        self.teammate_merges_to_main()
+        self.assertEqual(self.checkout_with_hooks("feature/x"), "")
+
     def test_offline_does_not_block(self):
         git(self.me, "remote", "set-url", "origin", str(Path(self.tmp.name) / "missing.git"))
         git(self.me, "checkout", "-q", "-b", "feature/x")
