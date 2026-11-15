@@ -8,7 +8,7 @@ description: Enforces English-only repository content (code, comments, docs, com
 **English only** in all repository files:
 
 - Source code and comments
-- Docs, README, AGENTS, skills
+- Docs, README, CLAUDE.md, skills
 - Commit messages and PR text stored in the repo
 - CLI strings and log messages shipped with the product
 
