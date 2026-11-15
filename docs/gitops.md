@@ -27,6 +27,19 @@ Do not invent a second check path.
 
 Without the secret, the workflow skips silently.
 
+## Project board
+
+Board: <https://github.com/orgs/Itin-dev/projects/1> — created and kept in sync by
+`bash scripts/setup-project.sh` (idempotent; edit `TEAM` there to change editors).
+
+Columns: Backlog → Todo → In progress → Review → Done. Areas are issue labels (`area:*`),
+not board fields, so there is one place to set them.
+
+Built-in workflows (board → ⋯ → Workflows) cannot be set through the API. Enable once:
+
+- **Auto-add to project:** filter `is:issue,pr is:open -label:decision` → status Todo
+- **Item closed** and **Pull request merged** → Done (on by default)
+
 ## Conventional Commits
 
 Required. Types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `ci`, `perf`, `build`.
