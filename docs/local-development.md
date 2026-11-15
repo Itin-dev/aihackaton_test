@@ -69,4 +69,4 @@ make check   # if you prefer Make shortcuts
 
 ## Stack-specific
 
-After choosing Python or Node, follow [stacks/INDEX.md](stacks/INDEX.md) for package managers, formatters, and how to extend `validate.sh`.
+Stack details (run, tests, adding dependencies): [stack.md](stack.md).

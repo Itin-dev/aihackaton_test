@@ -5,7 +5,6 @@
 #   bash scripts/doctor.sh          # full report
 #   bash scripts/doctor.sh --quiet  # only problems (used by the Claude Code SessionStart hook)
 #
-# Add stack tools (node, uv, docker, ...) to the STACK section once the stack is chosen.
 set -uo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -61,7 +60,20 @@ if has shellcheck; then ok "shellcheck"; else bad "shellcheck missing" "brew ins
 # --- Agent -------------------------------------------------------------------
 if has claude; then ok "claude CLI"; else bad "Claude Code CLI missing" "see https://docs.claude.com/en/docs/claude-code (or use the VS Code extension)"; fi
 
-# --- STACK (fill in once chosen) ---------------------------------------------
+# --- STACK: FastAPI (uv) + React (Node) --------------------------------------
+if has uv; then ok "uv $(uv --version | cut -d' ' -f2)"; else bad "uv missing" "brew install uv"; fi
+if has node && [ "$(node -p 'process.versions.node.split(".")[0]')" -ge 22 ]; then
+  ok "node $(node --version)"
+else
+  bad "node >= 22 missing" "brew install node"
+fi
+if [ -d services/api/.venv ]; then ok "api dependencies"; else bad "api dependencies not installed" "bash scripts/bootstrap.sh"; fi
+if [ -d apps/web/node_modules ]; then ok "web dependencies"; else bad "web dependencies not installed" "bash scripts/bootstrap.sh"; fi
+if [ -f .env ] && grep -q '^OPENROUTER_API_KEY=.\+' .env; then
+  ok ".env with OPENROUTER_API_KEY"
+else
+  bad ".env missing or OPENROUTER_API_KEY empty" "cp .env.example .env and paste the team key (ask in Discord)"
+fi
 
 if [ "$PROBLEMS" -gt 0 ]; then
   echo "  $PROBLEMS setup problem(s). Re-run: bash scripts/doctor.sh"

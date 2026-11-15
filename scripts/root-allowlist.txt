@@ -26,5 +26,4 @@ packages
 scripts
 services
 skills-lock.json
-src
 tests

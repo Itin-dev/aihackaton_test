@@ -19,7 +19,6 @@ Mandatory contract for humans and agents. Also enforced via `.claude/skills/gene
 | `apps/` | Frontends, CLIs, BFF |
 | `packages/` | Shared libraries used by multiple services/apps |
 | `tests/` | Integration / cross-service tests |
-| `src/` | Single-app layout — use **or** `services/`, not both long-term |
 | `scripts/` | Automation invoked by hooks/CI (not ad-hoc tools) |
 | `docs/` | Modular documentation with [INDEX.md](INDEX.md) |
 | `.claude/` | Agent meta only — never application packages |

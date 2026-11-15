@@ -13,6 +13,10 @@ done
 failed=0
 while IFS= read -r -d '' entry; do
   base="$(basename "$entry")"
+  # Local, gitignored files (.env, editor folders) can never be committed — skip them.
+  if git -C "$REPO_ROOT" check-ignore -q "$base"; then
+    continue
+  fi
   if [[ -z "${ok[$base]+x}" ]]; then
     echo "Unexpected top-level entry: $base" >&2
     failed=1
