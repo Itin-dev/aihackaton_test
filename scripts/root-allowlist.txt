@@ -19,6 +19,7 @@ PROGRESS.md
 README.md
 SECURITY.md
 apps
+design
 docker
 docs
 packages
