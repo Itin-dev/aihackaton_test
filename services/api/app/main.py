@@ -3,20 +3,13 @@
 from typing import Annotated
 
 from fastapi import Depends, FastAPI
-from pydantic import BaseModel, Field
 
+from app.chat import ChatReply, ChatRequest, build_messages, parse_reply
 from app.config import Settings, get_settings
+from app.knowledge import load_knowledge
 from app.llm import LLM, get_llm
 
 app = FastAPI(title="api")
-
-
-class ChatRequest(BaseModel):
-    message: str = Field(min_length=1, max_length=4000)
-
-
-class ChatResponse(BaseModel):
-    reply: str
 
 
 @app.get("/api/health")
@@ -29,9 +22,13 @@ def chat(
     request: ChatRequest,
     llm: Annotated[LLM, Depends(get_llm)],
     settings: Annotated[Settings, Depends(get_settings)],
-) -> ChatResponse:
-    messages = [
-        {"role": "system", "content": settings.system_prompt},
-        {"role": "user", "content": request.message},
-    ]
-    return ChatResponse(reply=llm.complete(messages))
+) -> ChatReply:
+    kb = load_knowledge()
+    messages = build_messages(
+        kb,
+        [m.model_dump() for m in request.messages],
+        language=request.language,
+        topic=request.topic,
+        persona=settings.system_prompt,
+    )
+    return parse_reply(llm.complete(messages), kb)

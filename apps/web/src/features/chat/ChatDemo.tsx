@@ -1,8 +1,10 @@
 import { type FormEvent, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 type Status = 'idle' | 'loading' | 'error'
 
 export default function ChatDemo() {
+  const { i18n } = useTranslation()
   const [message, setMessage] = useState('')
   const [reply, setReply] = useState('')
   const [error, setError] = useState('')
@@ -16,7 +18,10 @@ export default function ChatDemo() {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({
+          messages: [{ role: 'user', content: message }],
+          language: i18n.resolvedLanguage ?? 'en',
+        }),
       })
       const data = await response.json()
       if (!response.ok) throw new Error(data.detail ?? 'Request failed')
