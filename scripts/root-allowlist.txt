@@ -24,6 +24,7 @@ README.md
 SECURITY.md
 VERSION
 apps
+design
 docker
 docs
 packages
