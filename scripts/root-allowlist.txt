@@ -9,6 +9,7 @@
 .editorconfig
 .env.example
 .gitignore
+.mcp.json
 .pre-commit-config.yaml
 CLAUDE.md
 CONTRIBUTING.md
