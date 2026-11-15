@@ -22,10 +22,10 @@ After `bash scripts/bootstrap.sh`:
 |--------|-----------------|
 | commit | `scripts/validate.sh` + Conventional Commits |
 | push | `scripts/validate.sh --pre-push` |
-| merge to main | release-please Release PR |
+| merge to main | Discord notification (`notify-discord.yml`) |
 
-Do not ask the user to run validate/bump scripts manually.
+Do not ask the user to run validate scripts manually. No reviews are required — merge your own PR once `validate` is green.
 
 ## Docs in the same PR
 
-CHANGELOG `[Unreleased]`, and `docs/INDEX.md` when docs change.
+Update `docs/INDEX.md` when docs change. The PR title is the squash-commit message, so it must be a Conventional Commit.

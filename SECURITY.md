@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Security fixes apply to the latest release on `main` and the current template version in `VERSION`.
+Security fixes apply to `main`.
 
 ## Reporting a vulnerability
 

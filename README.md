@@ -1,41 +1,46 @@
-# generic
+# aihackaton
 
-AI-assisted project **meta-kit** template. Use it as the baseline for new projects — agent entrypoints, skills, rules, hooks, SemVer/GitOps automation, Docker placeholders, and modular docs. No sample application code.
+Team repository for the [Powercoders Hackathon "AI for Access"](https://hackathon.powercoders.org/en/)
+(Bern, 20–21 November 2026). Code freeze: Saturday 18:00.
 
-## Quick start (new project)
+## Team
 
-1. On GitHub: open this repo → **Use this template** → create a new repository.
-2. Clone the new repo.
-3. Run once:
+| Role | Focus |
+| --- | --- |
+| Dev + DevOps | Skeleton app, CI, preview deploys, OpenRouter client |
+| Dev | Features from issues |
+| UI/UX designer | Figma, design handoff |
+| Presenter | Ideas, pitch, demo script |
+
+Tools: Claude Code (agentic coding), Figma (design), Discord (communication),
+OpenRouter (AI backend), `gh` CLI (GitHub).
+
+## Quick start
 
 ```bash
-bash scripts/bootstrap.sh
-# non-interactive (Codespaces / CI):
-# bash scripts/bootstrap.sh --ci --name my-project --with-recommended-skills
+git clone <repo-url> && cd aihackaton
+bash scripts/bootstrap.sh   # once: git hooks, pre-commit, shellcheck, then runs the doctor
+bash scripts/doctor.sh      # any time: checks your machine matches the team setup
 ```
 
-4. Pick a stack recipe under [docs/stacks/](docs/stacks/INDEX.md) and put code in `services/` / `apps/` (or `src/` for a single-app layout).
-5. Work on a feature branch. Hooks + CI + release-please handle validation and versioning — you should not run those scripts by hand.
+Claude Code runs the doctor quietly at every session start and tells you what is missing.
 
-See [docs/using-the-template.md](docs/using-the-template.md).
+Work on a branch, open a PR, merge it yourself once the `validate` check is green.
+Merges are announced in Discord. Details: [docs/gitops.md](docs/gitops.md).
 
-## What you get
+## Voice capture
 
-| Area | Contents |
-|------|----------|
-| Agent OS (Claude Code) | `CLAUDE.md`, `.claude/skills/`, git hooks |
-| Automation | git hooks = CI, release-please, Dependabot, security workflow |
-| Layout | Empty `services/`, `apps/`, `packages/`, `tests/`, `src/` placeholders |
-| Docs | Modular entrypoints under [docs/INDEX.md](docs/INDEX.md) |
-| Localdev | Host tools preferred; Compose example for Mongo/MySQL |
+In Claude Code, dictate (or type) a prompt that starts with a trigger word:
 
-## Enable as GitHub Template
+| Say | Result |
+| --- | --- |
+| **Decision:** we deploy on Vercel | Closed issue labelled `decision` (the decision log) |
+| **Ticket:** export the login screen from Figma | Open issue with an `area:*` label on the board |
+| **Idea:** live captions for doctor visits | Open issue labelled `idea` — vote with 👍 |
+| **Recap** | Summary of today's issues, ready to paste into Discord |
 
-1. Open the repository on GitHub → **Settings**
-2. Check **Template repository**
-3. For each new idea: **Use this template** → create a new repo → clone → `bash scripts/bootstrap.sh`
-
-Do **not** fork this repo to start a product — fork only when contributing back to the template itself.
+Speak any language; issues are written in English. One-time setup: `bash scripts/setup-labels.sh`.
+How it works: [.claude/skills/capture/SKILL.md](.claude/skills/capture/SKILL.md).
 
 ## Documentation
 

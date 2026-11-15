@@ -29,7 +29,7 @@ fail() { echo -e "${RED}  FAIL $1${NC}"; ((CHECKS_FAILED++)) || true; }
 warn() { echo -e "${YELLOW}  WARN $1${NC}"; }
 
 echo ""
-echo "VALIDATION (generic) — CI parity"
+echo "VALIDATION — CI parity"
 
 if [ "$PRE_PUSH" = true ] && [ -n "${PUSH_REFS_FILE:-}" ] \
   && bash scripts/is-service-only-change.sh --pre-push 2>/dev/null; then
@@ -82,15 +82,15 @@ else
   fi
 fi
 
-print_section "5  VERSION + CHANGELOG"
-version_args=()
-if [ "$PRE_PUSH" = true ]; then
-  version_args=(--pre-push)
-fi
-if bash scripts/check-version.sh "${version_args[@]+"${version_args[@]}"}"; then
-  pass "version / changelog"
+print_section "5  TESTS"
+if compgen -G "tests/test_*.py" > /dev/null; then
+  if python3 -B -m unittest discover -s tests -q; then
+    pass "unittest (tests/)"
+  else
+    fail "unittest (tests/)"
+  fi
 else
-  fail "version / changelog"
+  pass "no tests/test_*.py"
 fi
 
 print_section "6  STACK EXTENSIONS (optional)"

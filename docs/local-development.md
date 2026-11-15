@@ -23,6 +23,13 @@ bash scripts/ensure-shellcheck.sh
 
 `bootstrap.sh` calls `ensure-shellcheck.sh` automatically.
 
+## Team setup check
+
+`bash scripts/doctor.sh` verifies git identity, git hooks, `gh` login + `project` scope,
+python3, pre-commit, shellcheck and the Claude CLI, and prints a fix for each problem.
+Claude Code runs it (quiet mode) on every session start. When the stack is chosen, add its
+tools to the `STACK` section so every machine stays in sync.
+
 ## Bootstrap (once)
 
 ```bash

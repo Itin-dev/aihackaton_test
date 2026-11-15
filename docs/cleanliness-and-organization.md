@@ -4,7 +4,7 @@ Mandatory contract for humans and agents. Also enforced via `.claude/skills/gene
 
 ## Principles
 
-1. **Thin root** — only entrypoints and config at the repository root (README, CLAUDE.md, VERSION, etc.). No orphan notes, scratch files, or one-off scripts at root.
+1. **Thin root** — only entrypoints and config at the repository root (README, CLAUDE.md, CONTRIBUTING, etc.). No orphan notes, scratch files, or one-off scripts at root.
 2. **One purpose per directory** — every top-level folder has a short README stating ownership.
 3. **Separation of responsibilities** — a module/service does one job; thin entrypoints.
 4. **Libraries first** — prefer maintained libraries/frameworks over reinventing.
@@ -32,13 +32,11 @@ Unexpected top-level names should not accumulate. Known roots are listed in `scr
 
 - New doc → add a row to [INDEX.md](INDEX.md)
 - No duplicate guides; link to the canonical page
-- Update CHANGELOG `[Unreleased]` for behaviour changes
 
 ## PR checklist
 
 - [ ] No unused placeholder dirs left without reason (or README explains why)
 - [ ] No dead code, commented-out blocks, or orphan files
 - [ ] Docs INDEX updated if docs changed
-- [ ] CHANGELOG updated if behaviour changed
 - [ ] Secrets not committed; `.env` stays local
 - [ ] English only in repo files

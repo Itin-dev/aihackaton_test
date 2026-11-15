@@ -3,7 +3,7 @@
 #
 # Usage:
 #   bash scripts/bootstrap.sh
-#   bash scripts/bootstrap.sh --ci --name my-project [--version 0.1.0] [--with-recommended-skills]
+#   bash scripts/bootstrap.sh --ci --name my-project [--with-recommended-skills]
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -12,16 +12,14 @@ cd "$REPO_ROOT"
 CI_MODE=false
 WITH_SKILLS=false
 PROJECT_NAME=""
-PROJECT_VERSION="0.1.0"
 
 while [ $# -gt 0 ]; do
   case "$1" in
     --ci) CI_MODE=true; shift ;;
     --with-recommended-skills) WITH_SKILLS=true; shift ;;
     --name) PROJECT_NAME="${2:-}"; shift 2 ;;
-    --version) PROJECT_VERSION="${2:-}"; shift 2 ;;
     -h|--help)
-      echo "Usage: bash scripts/bootstrap.sh [--ci] [--name NAME] [--version X.Y.Z] [--with-recommended-skills]"
+      echo "Usage: bash scripts/bootstrap.sh [--ci] [--name NAME] [--with-recommended-skills]"
       exit 0
       ;;
     *) echo "Unknown arg: $1" >&2; exit 1 ;;
@@ -37,15 +35,7 @@ if [ -z "$PROJECT_NAME" ]; then
   fi
 fi
 
-if [ "$CI_MODE" = false ] && [ -z "${PROJECT_VERSION}" ]; then
-  read -r -p "Initial version [0.1.0]: " PROJECT_VERSION
-  PROJECT_VERSION="${PROJECT_VERSION:-0.1.0}"
-fi
-
-echo "Bootstrapping project='$PROJECT_NAME' version='$PROJECT_VERSION'"
-
-# Write VERSION
-echo "$PROJECT_VERSION" > VERSION
+echo "Bootstrapping project='$PROJECT_NAME'"
 
 # Light placeholder rename in key docs (generic → project name) when not staying as template
 if [ "$PROJECT_NAME" != "generic" ]; then
@@ -103,8 +93,10 @@ if [ "$WITH_SKILLS" = true ] || { [ "$CI_MODE" = false ] && [ -t 0 ]; }; then
 fi
 
 echo ""
+bash scripts/doctor.sh || true
+echo ""
 echo "Bootstrap complete."
 echo "Next:"
 echo "  1. Pick a stack: docs/stacks/INDEX.md"
 echo "  2. Add code under services/ apps/ (or src/)"
-echo "  3. Work on a feature branch — hooks + CI + release-please are automatic"
+echo "  3. Work on a feature branch — hooks + CI are automatic"

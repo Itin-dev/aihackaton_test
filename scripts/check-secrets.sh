@@ -5,7 +5,7 @@ ROOT="${1:-.}"
 cd "$ROOT"
 echo "Scanning for hardcoded secrets..."
 if grep -r -i -E "(password|secret|api_key|token).*=.*['\"][^'\"]{8,}['\"]" \
-  --exclude="*.example" --exclude="README.md" --exclude="CHANGELOG.md" \
+  --exclude="*.example" --exclude="README.md" \
   --exclude="CONTRIBUTING.md" --exclude="CLAUDE.md" --exclude="SECURITY.md" \
   --exclude="SKILL.md" --exclude="*.md" \
   --exclude-dir=".git" --exclude-dir=".venv" --exclude-dir="node_modules" \
