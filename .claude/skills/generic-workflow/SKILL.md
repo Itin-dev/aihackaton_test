@@ -1,6 +1,6 @@
 ---
 name: generic-workflow
-description: Ticket lifecycle on the Hackathon project board (Todo → In progress → Review → Done), its rules and restrictions, branch-first git flow, hooks validation and PR rules. Use when the user asks to take, work on, pick up, start or implement an issue/ticket/task ("take #50", "next ticket"), asks about ticket status or the board, and when committing, pushing, opening PRs, or setting up a new clone.
+description: Ticket lifecycle on the Hackathon project board (Backlog → Todo → In progress → Review → Done), its rules and restrictions, branch-first git flow, hooks validation and PR rules. Use when the user asks to take, work on, pick up, start or implement an issue/ticket/task ("take #50", "next ticket"), asks about ticket status or the board, and when committing, pushing, opening PRs, or setting up a new clone.
 ---
 
 # generic-workflow
@@ -13,8 +13,8 @@ Project **Hackathon** (<https://github.com/orgs/Itin-dev/projects/1>), field **S
 
 | Status | Meaning | Who moves the card there |
 |--------|---------|--------------------------|
-| Backlog | Not planned yet | humans only |
-| Todo | Ready to pick up | automatic when an issue is added |
+| Backlog | Proposed, scope not agreed | automatic when an issue is added |
+| Todo | Agreed by the team, ready to pick up | humans only |
 | In progress | Someone is on it | **you**, via `scripts/start-task.sh` |
 | Review | PR open | automatic: PR with `Closes #n` opened |
 | Done | Merged or closed | automatic: PR merged / issue closed; dragging here closes the issue |
@@ -28,9 +28,11 @@ Labels, not board fields, carry the rest:
 ## Ticket lifecycle
 
 1. **Pick.** The user names an issue ("take #33"), or says "next ticket": choose the
-   highest-priority open, unassigned issue in Todo and tell the user which one.
+   highest-priority (`P0` → `P1` → `P2`) unassigned issue in **Todo** and tell the user which
+   one. Never pick from Backlog: those tickets are proposals the team has not agreed on.
    ```bash
-   gh issue list --state open --assignee "" --label P0   # then P1, then P2
+   gh project item-list 1 --owner Itin-dev --limit 200 --format json \
+     -q '.items[] | select(.status=="Todo") | "#\(.content.number) \(.labels) \(.assignees) \(.title)"'
    ```
 2. **Start** — before touching any code:
    ```bash
