@@ -21,7 +21,10 @@ describe('ChatDemo', () => {
 
     expect(await screen.findByText('Hi there')).toBeInTheDocument()
     expect(fetch).toHaveBeenCalledWith('/api/chat', expect.objectContaining({ method: 'POST' }))
-    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ message: 'Hello' })
+    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({
+      messages: [{ role: 'user', content: 'Hello' }],
+      language: 'en',
+    })
   })
 
   it('shows the API error detail', async () => {

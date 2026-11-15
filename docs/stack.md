@@ -29,6 +29,23 @@ Vercel: frontend as static files, FastAPI as a serverless function — see [depl
   tests never hit the network or cost money.
 - Frontend calls relative URLs (`/api/...`), never `localhost:8000`.
 
+## Chat API
+
+`POST /api/chat` is stateless: the client sends the whole conversation on every turn, nothing is stored.
+
+```jsonc
+// request
+{ "messages": [{ "role": "user", "content": "..." }],  // user|assistant, last one from the user
+  "language": "de",        // ISO code, default "en"
+  "topic": "housing" }     // optional home tile id
+// response
+{ "reply": "...", "mode": 2,                // 1 info, 2 referral, 3 letter
+  "organization_ids": ["mieterverband-luzern"], "source_url": "https://..." }
+```
+
+The model only sees knowledge-base entries for the topic (plus emergency numbers); ids and
+URLs that are not in `app/data/knowledge.json` are dropped from the response. Logic: `app/chat.py`.
+
 ## Frontend UI
 
 - Components come from [shadcn/ui](https://ui.shadcn.com) (`npx shadcn add <name>` in `apps/web`,
