@@ -119,7 +119,8 @@ Git hooks are enabled automatically by the Claude Code `SessionStart` hook (or `
 |------------|------|--------|
 | `git commit` | pre-commit | blocks `main`, then `scripts/validate.sh` |
 | `git commit` | commit-msg | Conventional Commits |
-| `git push` | pre-push | `scripts/validate.sh --pre-push` |
+| `git checkout -b` | post-checkout | warns if the new branch starts from an old `main` |
+| `git push` | pre-push | blocks a branch missing new `main` commits (`git pull origin main`), then `scripts/validate.sh --pre-push` |
 
 CI runs the same `scripts/validate.sh` and rejects non-Conventional PR titles (PRs are squash-merged, so the title is the commit). No release versioning — `main` is always the deployable demo. Merges to `main` are announced in Discord.
 

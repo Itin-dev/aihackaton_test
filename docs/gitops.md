@@ -9,7 +9,8 @@ Never implement on `main`. Create `feature/...` or `fix/...` from an updated `ma
 | Event | What runs |
 |-------|-----------|
 | commit | `scripts/validate.sh` + Conventional Commit message check |
-| push | `scripts/validate.sh --pre-push` |
+| new branch (checkout) | warns if it starts from an old `main` (`scripts/check-fresh-base.sh --warn`) |
+| push | blocks a branch missing new `main` commits (fix: `git pull origin main`), then `scripts/validate.sh --pre-push` |
 | GitHub Actions | same `scripts/validate.sh` |
 
 Do not invent a second check path.
