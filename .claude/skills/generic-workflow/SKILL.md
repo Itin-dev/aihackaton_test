@@ -54,6 +54,11 @@ Labels, not board fields, carry the rest:
   `decision`/`idea`. Ask the user instead.
 - Do not move cards to **Review** or **Done** by hand and do not close issues yourself —
   the PR does it. Exception: the user explicitly asks (e.g. drop a ticket → close as not planned).
+- **One task at a time.** Do not start a new issue while another is in progress (ticket branch
+  checked out, uncommitted changes, or an open PR you are driving) — propose it or capture it
+  and wait for the user. `start-task.sh` refuses while you have another assigned issue with a
+  branch (`--parallel` only on the user's explicit say-so). Never create git worktrees: the
+  `PreToolUse` hook `.claude/hooks/guard_parallel_work.py` blocks them.
 - One issue per branch and per PR. Found extra work? Create a new ticket (`capture` skill),
   do not widen the current PR.
 - Never work on `main`, never `--no-verify`, never force-push `main`.

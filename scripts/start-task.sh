@@ -3,7 +3,9 @@
 # Start work on a GitHub issue: assign it to you, create its branch from main,
 # and move its card on the "Hackathon" board to "In progress".
 #
-# Usage: bash scripts/start-task.sh <issue-number>
+# Usage: bash scripts/start-task.sh [--parallel] <issue-number>
+# One task at a time: refuses while another issue assigned to you has a branch (local or
+# remote) — i.e. is still in progress. --parallel overrides; use it only when a human decides so.
 # Needs: gh with the `project` scope (gh auth refresh -s project).
 # Board steps are best-effort: a failure there warns but never blocks the branch.
 set -euo pipefail
@@ -22,6 +24,17 @@ branch_name() {
 
 warn() { echo "warning: $*" >&2; }
 
+# active_tasks <target> <assigned-numbers> <branch-names> -> other assigned issues that have a branch
+active_tasks() {
+  local target="$1" assigned="$2" branches="$3" n
+  for n in $assigned; do
+    [ "$n" = "$target" ] && continue
+    if grep -Eq "(^|/)(feature|fix)/${n}-" <<<"$branches"; then
+      echo "$n"
+    fi
+  done
+}
+
 move_to_in_progress() {
   local issue_url="$1" owner="$2" number project_id field_id option_id item_id
   number="$(gh project list --owner "$owner" --format json \
@@ -38,9 +51,11 @@ move_to_in_progress() {
 }
 
 main() {
-  local issue="${1:-}" repo owner title labels url state branch
+  local parallel=false issue repo owner title labels url state branch active
+  if [ "${1:-}" = "--parallel" ]; then parallel=true; shift; fi
+  issue="${1:-}"
   if [[ ! "$issue" =~ ^[0-9]+$ ]]; then
-    echo "Usage: bash scripts/start-task.sh <issue-number>" >&2
+    echo "Usage: bash scripts/start-task.sh [--parallel] <issue-number>" >&2
     exit 2
   fi
   repo="$(gh repo view --json nameWithOwner --jq .nameWithOwner)"
@@ -48,6 +63,17 @@ main() {
   IFS=$'\t' read -r title labels url state < <(gh issue view "$issue" --json title,labels,url,state \
     --jq '[.title, ([.labels[].name] | join(",")), .url, .state] | @tsv')
   [ "$state" = "OPEN" ] || { echo "Issue #$issue is $state" >&2; exit 1; }
+
+  if [ "$parallel" = false ]; then
+    active="$(active_tasks "$issue" \
+      "$(gh issue list --assignee @me --state open --json number --jq '.[].number')" \
+      "$(git branch -a --format='%(refname:short)')")"
+    if [ -n "$active" ]; then
+      echo "One task at a time: you still have #$(echo "$active" | paste -sd ' ' - | sed 's/ /, #/g') in progress." >&2
+      echo "Finish it (merge the PR), or unassign yourself if abandoned. Override: --parallel" >&2
+      exit 1
+    fi
+  fi
 
   if [ -n "$(git status --porcelain)" ]; then
     echo "Working tree not clean; commit or stash first." >&2

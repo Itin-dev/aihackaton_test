@@ -53,6 +53,7 @@ Docs and skills are guidance. **Enforcement** is layered so agents cannot casual
 
 | Layer | What | Can model ignore? |
 |-------|------|-------------------|
+| Claude hook `guard_parallel_work.py` (PreToolUse) | Agents cannot create git worktrees (one task at a time) | No |
 | Git hooks (`.githooks`) | `validate.sh` on commit/push; Conventional Commits | No (unless bypassed with `--no-verify`) |
 | Branch protection on `main` | PR required, `validate` CI check must pass | No (server-side) |
 | `CLAUDE.md` | Binding workflow instructions | Soft |

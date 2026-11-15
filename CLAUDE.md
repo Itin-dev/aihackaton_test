@@ -19,6 +19,11 @@ pick the highest-priority open unassigned issue (`P0` → `P1` → `P2`) and say
 Finish by opening the PR yourself with `Closes #<n>` in the body (board → Review → Done).
 Details: `.claude/skills/generic-workflow/SKILL.md`.
 
+**One task at a time.** Never start a second ticket while one is in progress (a ticket branch is
+checked out, or there are uncommitted changes): propose the new work or capture it as a Ticket,
+and wait for the user's go-ahead. Never create git worktrees — a `PreToolUse` hook blocks them,
+and `start-task.sh` refuses while you have another assigned issue with a branch.
+
 ## Asking the team (always active)
 
 When blocked on something only a teammate knows (a decision, an API shape, who owns what),
