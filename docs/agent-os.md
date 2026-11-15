@@ -1,13 +1,13 @@
 # Agent OS
 
-Skills, hooks, and plugins for this template.
+Claude Code setup for this template: skills, hooks, and plugins. Claude Code is the only supported agent.
 
 ## Entrypoints
 
-- Agents: [AGENTS.md](../AGENTS.md)
+- Claude Code: [CLAUDE.md](../CLAUDE.md) (loaded automatically every session)
 - Docs: [INDEX.md](INDEX.md)
 
-## Skills (`.agents/skills/`)
+## Skills (`.claude/skills/`)
 
 Project skills (always present):
 
@@ -22,11 +22,9 @@ Project skills (always present):
 | `generic-cleanliness` | Tidy repo checklist |
 | `caveman*` / `cavecrew` | Token efficiency |
 
-Continue mirrors live under `.continue/skills/` for caveman (and can mirror project skills).
-
 ### Recommended community skills
 
-Installed by `bootstrap.sh --with-recommended-skills` via the [skills CLI](https://github.com/vercel-labs/skills):
+Installed by `bootstrap.sh --with-recommended-skills` via the [skills CLI](https://github.com/vercel-labs/skills) (`--agent claude-code`):
 
 | Skill | Source |
 |-------|--------|
@@ -58,11 +56,11 @@ Docs and skills are guidance. **Enforcement** is layered so agents cannot casual
 |-------|------|-------------------|
 | Git hooks (`.githooks`) | `validate.sh` on commit/push; Conventional Commits | No (unless bypassed with `--no-verify`) |
 | Branch protection on `main` | PR required, `validate` CI check must pass | No (server-side) |
-| `AGENTS.md` | Binding workflow instructions | Soft |
+| `CLAUDE.md` | Binding workflow instructions | Soft |
 | Skills / docs | Procedures and checklists | Soft — use for how-to |
 
 If an agent tries to skip validation or push to `main`, git hooks and branch protection block it. Prefer fixing the failure over disabling hooks.
 
 ## Plugins
 
-Do not commit a `plugins/` tree. Document Marketplace recommendations in AGENTS.md; install per machine/team.
+Do not commit a `plugins/` tree. Install Claude Code plugins per machine with `/plugin`; document team recommendations in CLAUDE.md.

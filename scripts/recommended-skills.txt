@@ -1,5 +1,5 @@
 # Recommended community skills (scripts/install-recommended-skills.sh).
-# Caveman suite is already vendored under .agents/skills/.
+# Caveman suite is already vendored under .claude/skills/.
 
 # Default auto-install
 addyosmani/agent-skills:test-driven-development

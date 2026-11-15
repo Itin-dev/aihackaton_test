@@ -6,10 +6,10 @@ cd "$ROOT"
 echo "Scanning for hardcoded secrets..."
 if grep -r -i -E "(password|secret|api_key|token).*=.*['\"][^'\"]{8,}['\"]" \
   --exclude="*.example" --exclude="README.md" --exclude="CHANGELOG.md" \
-  --exclude="CONTRIBUTING.md" --exclude="AGENTS.md" --exclude="SECURITY.md" \
+  --exclude="CONTRIBUTING.md" --exclude="CLAUDE.md" --exclude="SECURITY.md" \
   --exclude="SKILL.md" --exclude="*.md" \
   --exclude-dir=".git" --exclude-dir=".venv" --exclude-dir="node_modules" \
-  --exclude-dir=".pytest_cache" --exclude-dir=".agents" --exclude-dir=".continue" \
+  --exclude-dir=".pytest_cache" --exclude-dir=".claude" \
   . 2>/dev/null \
   | grep -v "^[[:space:]]*#" \
   | grep -v "os.environ.get" \

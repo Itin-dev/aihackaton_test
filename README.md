@@ -23,7 +23,7 @@ See [docs/using-the-template.md](docs/using-the-template.md).
 
 | Area | Contents |
 |------|----------|
-| Agent OS | `AGENTS.md`, `.agents/skills/`, git hooks |
+| Agent OS (Claude Code) | `CLAUDE.md`, `.claude/skills/`, git hooks |
 | Automation | git hooks = CI, release-please, Dependabot, security workflow |
 | Layout | Empty `services/`, `apps/`, `packages/`, `tests/`, `src/` placeholders |
 | Docs | Modular entrypoints under [docs/INDEX.md](docs/INDEX.md) |
@@ -39,7 +39,7 @@ Do **not** fork this repo to start a product — fork only when contributing bac
 
 ## Documentation
 
-Start at [docs/INDEX.md](docs/INDEX.md). Agents start at [AGENTS.md](AGENTS.md).
+Start at [docs/INDEX.md](docs/INDEX.md). Claude Code starts at [CLAUDE.md](CLAUDE.md).
 
 ## License
 

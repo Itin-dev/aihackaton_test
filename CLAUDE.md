@@ -1,6 +1,6 @@
 # Generic — Agent Entrypoint
 
-Starting point for AI agents (Claude Code, Continue, Copilot) in repositories created from this template.
+Starting point for Claude Code in repositories created from this template. Claude Code is the only supported agent; project skills live in `.claude/skills/` and load automatically.
 
 ## What this project is
 
@@ -15,16 +15,16 @@ Starting point for AI agents (Claude Code, Continue, Copilot) in repositories cr
 | [docs/cleanliness-and-organization.md](docs/cleanliness-and-organization.md) | Clean & organized contract (mandatory) |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Setup, branch workflow |
 | [CHANGELOG.md](CHANGELOG.md) | Keep a Changelog + SemVer |
-| `.agents/skills/generic-project/` | Layout, SoC, libraries-first |
-| `.agents/skills/generic-workflow/` | Git flow, hooks (auto) |
-| `.agents/skills/generic-versioning/` | SemVer / release-please |
-| `.agents/skills/generic-cleanliness/` | Tidy repo checklist |
-| `.agents/skills/generic-language/` | English-only repo content |
+| `.claude/skills/generic-project/` | Layout, SoC, libraries-first |
+| `.claude/skills/generic-workflow/` | Git flow, hooks (auto) |
+| `.claude/skills/generic-versioning/` | SemVer / release-please |
+| `.claude/skills/generic-cleanliness/` | Tidy repo checklist |
+| `.claude/skills/generic-language/` | English-only repo content |
 
 ## Language (mandatory)
 
 **English only** in code, comments, docs, commits, and skills you write.
-Read `.agents/skills/generic-language/SKILL.md`. User chat may be any language; repo files must be English.
+Read `.claude/skills/generic-language/SKILL.md`. User chat may be any language; repo files must be English.
 
 ## Token efficiency skills
 
@@ -57,7 +57,7 @@ tests/            # integration / repo-level tests
 src/              # optional single-app layout (use OR services/, not both)
 scripts/          # validate, bootstrap, secrets (invoked by hooks/CI)
 docs/             # modular docs — start at docs/INDEX.md
-.agents/skills/   # agent skills
+.claude/skills/   # Claude Code skills
 docker/           # compose example (infra placeholders)
 ```
 

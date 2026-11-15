@@ -1,10 +1,10 @@
 # Cleanliness and organization
 
-Mandatory contract for humans and agents. Also enforced via `.agents/skills/generic-cleanliness/`.
+Mandatory contract for humans and agents. Also enforced via `.claude/skills/generic-cleanliness/`.
 
 ## Principles
 
-1. **Thin root** — only entrypoints and config at the repository root (README, AGENTS, VERSION, etc.). No orphan notes, scratch files, or one-off scripts at root.
+1. **Thin root** — only entrypoints and config at the repository root (README, CLAUDE.md, VERSION, etc.). No orphan notes, scratch files, or one-off scripts at root.
 2. **One purpose per directory** — every top-level folder has a short README stating ownership.
 3. **Separation of responsibilities** — a module/service does one job; thin entrypoints.
 4. **Libraries first** — prefer maintained libraries/frameworks over reinventing.
@@ -22,7 +22,7 @@ Mandatory contract for humans and agents. Also enforced via `.agents/skills/gene
 | `src/` | Single-app layout — use **or** `services/`, not both long-term |
 | `scripts/` | Automation invoked by hooks/CI (not ad-hoc tools) |
 | `docs/` | Modular documentation with [INDEX.md](INDEX.md) |
-| `.agents/` | Agent meta only — never application packages |
+| `.claude/` | Agent meta only — never application packages |
 
 ## Root allowlist
 
