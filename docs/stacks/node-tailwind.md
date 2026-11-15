@@ -38,7 +38,7 @@ Keep commands inside `scripts/validate.sh` so hooks and CI stay identical.
 
 ## npm publish projects only
 
-If this repo publishes packages to npm, you may document **semantic-release** as an alternative. Default template releases stay on **release-please**.
+If this repo publishes packages to npm, you may document **semantic-release** as an alternative. The template itself does not version releases.
 
 ## Optional community skills
 

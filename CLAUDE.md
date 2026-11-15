@@ -1,25 +1,28 @@
-# Generic — Agent Entrypoint
+# aihackaton — Agent Entrypoint
 
-Starting point for Claude Code in repositories created from this template. Claude Code is the only supported agent; project skills live in `.claude/skills/` and load automatically.
+Claude Code entrypoint for the team's Powercoders "AI for Access" hackathon repo (Bern, 20–21 Nov 2026, ~10 hours of hack time). Project skills live in `.claude/skills/` and load automatically.
 
 ## What this project is
 
-**generic** is a meta-kit for AI-assisted development: agent skills/rules/hooks, SemVer + GitOps automation, Docker/localdev conventions, and modular docs. Application code lives in projects created *from* this template — not in the template itself unless you are extending the kit.
+The team's hackathon project, built on an AI-assisted dev kit (skills, hooks, GitOps, docs). Speed matters more than process: small PRs, self-merge on green `validate`, no release versioning.
+
+## Team capture (always active)
+
+Prompts that start with **Decision**, **Ticket**, **Idea** or **Recap** (usually dictated by voice) must be handled with the `capture` skill (`.claude/skills/capture/SKILL.md`): they become GitHub issues via `gh`, never local files. The `UserPromptSubmit` hook in `.claude/settings.json` flags these prompts automatically.
 
 ## Read first
 
 | Resource | Purpose |
 |----------|---------|
-| [README.md](README.md) | Human overview, Use this template |
+| [README.md](README.md) | Team overview, quick start, voice capture |
 | [docs/INDEX.md](docs/INDEX.md) | Docs map |
 | [docs/cleanliness-and-organization.md](docs/cleanliness-and-organization.md) | Clean & organized contract (mandatory) |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Setup, branch workflow |
-| [CHANGELOG.md](CHANGELOG.md) | Keep a Changelog + SemVer |
 | `.claude/skills/generic-project/` | Layout, SoC, libraries-first |
 | `.claude/skills/generic-workflow/` | Git flow, hooks (auto) |
-| `.claude/skills/generic-versioning/` | SemVer / release-please |
 | `.claude/skills/generic-cleanliness/` | Tidy repo checklist |
 | `.claude/skills/generic-language/` | English-only repo content |
+| `.claude/skills/capture/` | Decisions / tickets / ideas → GitHub issues |
 
 ## Language (mandatory)
 
@@ -65,7 +68,7 @@ docker/           # compose example (infra placeholders)
 
 ### Binding (non-negotiable)
 
-Git hooks (`.githooks/`) plus branch protection on `main` (PR + passing `validate` check) enforce the flow. Agents must not invent shortcuts, skip hooks, or commit on `main`. See [docs/agent-os.md](docs/agent-os.md#enforcement).
+Git hooks (`.githooks/`) plus branch protection on `main` (PR + passing `validate` check, no required reviews) enforce the flow. Agents must not invent shortcuts, skip hooks, or commit on `main`. See [docs/agent-os.md](docs/agent-os.md#enforcement).
 
 ### 0. Branch first
 
@@ -81,29 +84,36 @@ Never implement on `main`.
 Follow [docs/cleanliness-and-organization.md](docs/cleanliness-and-organization.md).
 Thin root, one responsibility per module, prefer existing libraries, prune unused placeholders, update docs INDEX.
 
-### 2. Modular changes
+### 2. Test first (TDD)
+
+Use the `test-driven-development` skill for any logic, API, AI-response handling or bug fix:
+failing test → minimal code → refactor. Exempt: pure UI layout, copy, config and docs.
+Tests must run in `scripts/validate.sh` (add a stack check to `scripts/validate-stack.sh` once
+the stack is chosen). Tech stack: not chosen yet — do not scaffold one unprompted.
+
+### 3. Modular changes
 
 - Prefer `services/<name>/` with a single responsibility per service
 - Shared code → `packages/`
 - Thin entrypoints; no mixed concerns
 
-### 3. Documentation
+### 4. Documentation
 
-- Behaviour changes → `CHANGELOG.md` `[Unreleased]`
+- History = squash-merged PR titles (Conventional Commits); no CHANGELOG
 - Large work → update `PLAN.md` / `PROGRESS.md`
 - New docs → register in `docs/INDEX.md`
 
-### 4. Commit and push — hooks run validation
+### 5. Commit and push — hooks run validation
 
-After one-time `bash scripts/bootstrap.sh`, hooks run automatically:
+Git hooks are enabled automatically by the Claude Code `SessionStart` hook (or `bash scripts/bootstrap.sh`):
 
 | Git action | Hook | Effect |
 |------------|------|--------|
-| `git commit` | pre-commit | `scripts/validate.sh` |
+| `git commit` | pre-commit | blocks `main`, then `scripts/validate.sh` |
 | `git commit` | commit-msg | Conventional Commits |
 | `git push` | pre-push | `scripts/validate.sh --pre-push` |
 
-CI runs the same `scripts/validate.sh`. Releases are automated via **release-please** (do not bump versions by hand).
+CI runs the same `scripts/validate.sh` and rejects non-Conventional PR titles (PRs are squash-merged, so the title is the commit). No release versioning — `main` is always the deployable demo. Merges to `main` are announced in Discord.
 
 ## Service paths (skip app gates)
 

@@ -14,7 +14,7 @@ Optional: copy `.env.example` → `.env`.
 
 1. Start from up-to-date `main`
 2. Create `feature/...` or `fix/...`
-3. Keep changes focused; update docs/CHANGELOG in the same PR
+3. Keep changes focused; update docs in the same PR
 4. Push — pre-push hook runs the same checks as CI
 
 Never commit directly to `main`.
@@ -25,7 +25,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/):
 
 - `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`, `ci:`
 
-These feed **release-please** for SemVer and CHANGELOG automation.
+Keep them consistent — they make the history and Discord merge notifications readable.
 
 ## Validation
 

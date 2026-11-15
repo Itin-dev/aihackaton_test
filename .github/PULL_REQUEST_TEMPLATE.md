@@ -5,8 +5,8 @@
 ## Checklist
 
 - [ ] Branch is not `main`
-- [ ] Conventional commit messages
-- [ ] Docs / CHANGELOG updated when behaviour changed
+- [ ] PR title is a Conventional Commit (it becomes the squash commit)
+- [ ] Docs updated when behaviour changed
 - [ ] Cleanliness checklist ([docs/cleanliness-and-organization.md](../docs/cleanliness-and-organization.md))
 - [ ] Hooks / CI validation expected to pass
 

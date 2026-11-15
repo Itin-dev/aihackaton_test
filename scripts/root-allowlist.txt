@@ -10,9 +10,7 @@
 .env.example
 .gitignore
 .pre-commit-config.yaml
-.release-please-manifest.json
 CLAUDE.md
-CHANGELOG.md
 CONTRIBUTING.md
 LICENSE
 Makefile
@@ -20,12 +18,10 @@ PLAN.md
 PROGRESS.md
 README.md
 SECURITY.md
-VERSION
 apps
 docker
 docs
 packages
-release-please-config.json
 scripts
 services
 skills-lock.json

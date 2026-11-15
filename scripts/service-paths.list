@@ -1,4 +1,4 @@
-# Service/meta paths — changes here do NOT trigger app gates or version bumps.
+# Service/meta paths — changes here do NOT trigger app gates.
 # One pattern per line. Matches use path prefix or glob (*, **).
 
 .github/**
@@ -12,10 +12,8 @@ skills-lock.json
 CLAUDE.md
 README.md
 CONTRIBUTING.md
-CHANGELOG.md
 SECURITY.md
 LICENSE
-VERSION
 PLAN.md
 PROGRESS.md
 .editorconfig
@@ -23,8 +21,6 @@ PROGRESS.md
 .pre-commit-config.yaml
 .env.example
 Makefile
-release-please-config.json
-.release-please-manifest.json
 services/README.md
 apps/README.md
 packages/README.md

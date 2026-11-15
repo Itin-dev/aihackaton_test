@@ -6,10 +6,9 @@ Entrypoint for humans and agents. Prefer linking here instead of duplicating gui
 
 | Doc | Purpose |
 |-----|---------|
-| [using-the-template.md](using-the-template.md) | GitHub Template vs fork; starting new ideas |
 | [cleanliness-and-organization.md](cleanliness-and-organization.md) | Clean & organized contract (mandatory) |
 | [local-development.md](local-development.md) | Host tools, hooks, env, Compose |
-| [gitops-and-semver.md](gitops-and-semver.md) | Branch, hooks = CI, release-please |
+| [gitops.md](gitops.md) | Branch, hooks = CI, merge notifications |
 | [agent-os.md](agent-os.md) | Skills, rules, hooks, MCP, subagents, plugins |
 | [docker-microservices.md](docker-microservices.md) | Compose patterns, service boundaries |
 | [security.md](security.md) | Local scanners + CI |
@@ -30,6 +29,5 @@ Entrypoint for humans and agents. Prefer linking here instead of duplicating gui
 | [../README.md](../README.md) | Humans |
 | [../CLAUDE.md](../CLAUDE.md) | Claude Code |
 | [../CONTRIBUTING.md](../CONTRIBUTING.md) | Contributors |
-| [../CHANGELOG.md](../CHANGELOG.md) | Releases |
 | [../SECURITY.md](../SECURITY.md) | Vulnerability reporting |
 | [../PLAN.md](../PLAN.md) / [../PROGRESS.md](../PROGRESS.md) | Large work tracking |

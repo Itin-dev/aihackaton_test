@@ -15,11 +15,10 @@ Project skills (always present):
 |-------|------|
 | `generic-project` | Layout, SoC, libraries-first |
 | `generic-workflow` | Branch / hooks / GitOps |
-| `generic-versioning` | SemVer / release-please |
 | `generic-language` | English-only |
-| `generic-tdd` | Test-first |
 | `generic-docker` | Microservices + Compose |
 | `generic-cleanliness` | Tidy repo checklist |
+| `capture` | Voice/typed input → GitHub issues (decisions, tickets, ideas, recap) |
 | `caveman*` / `cavecrew` | Token efficiency |
 
 ### Recommended community skills

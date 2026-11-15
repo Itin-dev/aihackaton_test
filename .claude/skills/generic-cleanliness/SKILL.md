@@ -13,7 +13,6 @@ Follow [docs/cleanliness-and-organization.md](../../../docs/cleanliness-and-orga
 - [ ] Unused placeholders pruned or explained
 - [ ] No dead code / commented-out blocks
 - [ ] `docs/INDEX.md` updated if docs changed
-- [ ] CHANGELOG updated if behaviour changed
 - [ ] Secrets not committed
 - [ ] English only
 
