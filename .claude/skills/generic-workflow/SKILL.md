@@ -5,7 +5,22 @@ description: Git branch-first workflow, automatic hooks validation, and GitOps p
 
 # generic-workflow
 
-## Branch first
+## Start a ticket (mandatory when work maps to an issue)
+
+When you pick up a GitHub issue ("take #33", "work on the home screen ticket"), run first:
+
+```bash
+bash scripts/start-task.sh <issue-number>
+```
+
+It assigns the issue to the current `gh` user, creates `feature/<n>-<slug>` (or `fix/…` for
+`bug` issues) from fresh `main`, and moves the card on the Hackathon board to **In progress**.
+Board warnings do not block work; mention them to the user.
+
+Unsure which issue? `gh issue list --label P0 --assignee ""` — take the highest priority
+(`P0` → `P1` → `P2`) unassigned one.
+
+## Branch first (no issue)
 
 ```bash
 git checkout main && git pull
@@ -13,6 +28,11 @@ git checkout -b feature/short-description
 ```
 
 Never implement on `main`.
+
+## Pull requests close their issue
+
+Put `Closes #<n>` in the PR body (the template has the line). The board then moves the card
+to **Review** when the PR opens and to **Done** when it merges.
 
 ## Automation
 

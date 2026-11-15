@@ -12,10 +12,12 @@ Optional: copy `.env.example` → `.env`.
 
 ## Branch workflow
 
-1. Start from up-to-date `main`
-2. Create `feature/...` or `fix/...`
-3. Keep changes focused; update docs in the same PR
-4. Push — pre-push hook runs the same checks as CI
+1. Working on an issue? `bash scripts/start-task.sh <issue#>` — assigns it, branches from fresh
+   `main` and moves the board card to In progress. Otherwise start from up-to-date `main` and
+   create `feature/...` or `fix/...`
+2. Keep changes focused; update docs in the same PR
+3. Push — pre-push hook runs the same checks as CI
+4. Open the PR with `Closes #<issue>` so the card moves to Review, then Done on merge
 
 Never commit directly to `main`.
 
