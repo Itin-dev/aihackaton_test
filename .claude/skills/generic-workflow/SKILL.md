@@ -1,17 +1,20 @@
 ---
 name: generic-workflow
-description: Git branch-first workflow, automatic hooks validation, and GitOps parity with CI. Use when committing, pushing, opening PRs, or setting up a new clone.
+description: Git branch-first workflow, ticket start (board In progress), automatic hooks validation, and GitOps parity with CI. Use when the user asks to take, work on, pick up, start or implement an issue/ticket/task ("take #50", "next ticket"), and when committing, pushing, opening PRs, or setting up a new clone.
 ---
 
 # generic-workflow
 
 ## Start a ticket (mandatory when work maps to an issue)
 
-When you pick up a GitHub issue ("take #33", "work on the home screen ticket"), run first:
+When you pick up a GitHub issue ("take #33", "work on the home screen ticket"), run first —
+yourself, never ask the user to run it:
 
 ```bash
 bash scripts/start-task.sh <issue-number>
 ```
+
+Then read the issue (`gh issue view <n>`), implement, and open the PR yourself.
 
 It assigns the issue to the current `gh` user, creates `feature/<n>-<slug>` (or `fix/…` for
 `bug` issues) from fresh `main`, and moves the card on the Hackathon board to **In progress**.

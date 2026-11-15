@@ -10,6 +10,15 @@ The team's hackathon project, built on an AI-assisted dev kit (skills, hooks, Gi
 
 Prompts that start with **Decision**, **Ticket**, **Idea** or **Recap** (usually dictated by voice) must be handled with the `capture` skill (`.claude/skills/capture/SKILL.md`): they become GitHub issues via `gh`, never local files. The `UserPromptSubmit` hook in `.claude/settings.json` flags these prompts automatically.
 
+## Working on tickets (always active)
+
+When the user asks to take, work on, pick up or implement an issue ("take #50", "next ticket"),
+**you** run `bash scripts/start-task.sh <n>` before touching code — never ask the user to run it.
+It assigns the issue, creates the branch and moves the board card to In progress. No number →
+pick the highest-priority open unassigned issue (`P0` → `P1` → `P2`) and say which one.
+Finish by opening the PR yourself with `Closes #<n>` in the body (board → Review → Done).
+Details: `.claude/skills/generic-workflow/SKILL.md`.
+
 ## Read first
 
 | Resource | Purpose |
