@@ -28,7 +28,7 @@ Entrypoint for humans and agents. Prefer linking here instead of duplicating gui
 | File | Audience |
 |------|----------|
 | [../README.md](../README.md) | Humans |
-| [../AGENTS.md](../AGENTS.md) | Agents |
+| [../CLAUDE.md](../CLAUDE.md) | Claude Code |
 | [../CONTRIBUTING.md](../CONTRIBUTING.md) | Contributors |
 | [../CHANGELOG.md](../CHANGELOG.md) | Releases |
 | [../SECURITY.md](../SECURITY.md) | Vulnerability reporting |

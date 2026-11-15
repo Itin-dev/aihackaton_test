@@ -72,7 +72,6 @@ else
   mapfile -t shell_files < <(
     find scripts -type f -name '*.sh' -print
     find .githooks -type f -print
-    find .cursor/hooks -type f -name '*.sh' -print
   )
   if [ "${#shell_files[@]}" -eq 0 ]; then
     pass "no shell files"
