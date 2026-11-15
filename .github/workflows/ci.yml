@@ -22,12 +22,23 @@ jobs:
         with:
           python-version: "3.12"
 
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
       - name: Install tools
         run: |
           python -m pip install --upgrade pip
-          pip install pre-commit
+          pip install pre-commit uv
           sudo apt-get update
           sudo apt-get install -y shellcheck
+
+      - name: Install app dependencies
+        run: |
+          (cd services/api && uv sync --frozen)
+          npm --prefix apps/web ci --no-audit --no-fund
 
       - name: Conventional PR title (becomes the squash commit)
         if: github.event_name == 'pull_request'

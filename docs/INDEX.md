@@ -14,13 +14,11 @@ Entrypoint for humans and agents. Prefer linking here instead of duplicating gui
 | [security.md](security.md) | Local scanners + CI |
 | [tdd-and-quality.md](tdd-and-quality.md) | TDD, readable code, SoC |
 
-## Stack recipes
+## Stack
 
 | Doc | Purpose |
 |-----|---------|
-| [stacks/INDEX.md](stacks/INDEX.md) | Choose Python or Node |
-| [stacks/python-mongo-mysql.md](stacks/python-mongo-mysql.md) | Python + Mongo/MySQL |
-| [stacks/node-tailwind.md](stacks/node-tailwind.md) | Node + modern UI + Tailwind |
+| [stack.md](stack.md) | FastAPI + React: run, conventions, tests |
 
 ## Root entrypoints
 

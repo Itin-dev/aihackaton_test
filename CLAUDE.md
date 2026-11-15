@@ -57,7 +57,6 @@ services/         # microservices (preferred)
 apps/             # frontends / CLIs / BFF
 packages/         # shared libraries
 tests/            # integration / repo-level tests
-src/              # optional single-app layout (use OR services/, not both)
 scripts/          # validate, bootstrap, secrets (invoked by hooks/CI)
 docs/             # modular docs — start at docs/INDEX.md
 .claude/skills/   # Claude Code skills
@@ -88,8 +87,8 @@ Thin root, one responsibility per module, prefer existing libraries, prune unuse
 
 Use the `test-driven-development` skill for any logic, API, AI-response handling or bug fix:
 failing test → minimal code → refactor. Exempt: pure UI layout, copy, config and docs.
-Tests must run in `scripts/validate.sh` (add a stack check to `scripts/validate-stack.sh` once
-the stack is chosen). Tech stack: not chosen yet — do not scaffold one unprompted.
+Tests must run in `scripts/validate.sh` (stack checks live in `scripts/validate-stack.sh` — extend it as
+needed). Stack: FastAPI (`services/api`) + React (`apps/web`) — see `docs/stack.md`.
 
 ### 3. Modular changes
 

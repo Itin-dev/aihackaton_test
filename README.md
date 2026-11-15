@@ -23,6 +23,15 @@ bash scripts/bootstrap.sh   # once: git hooks, pre-commit, shellcheck, then runs
 bash scripts/doctor.sh      # any time: checks your machine matches the team setup
 ```
 
+Run the app:
+
+```bash
+make api   # terminal 1 → http://localhost:8000
+make web   # terminal 2 → http://localhost:5173
+```
+
+Stack: FastAPI + React — see [docs/stack.md](docs/stack.md).
+
 Claude Code runs the doctor quietly at every session start and tells you what is missing.
 
 Work on a branch, open a PR, merge it yourself once the `validate` check is green.

@@ -22,4 +22,4 @@ description: Explains repository layout, separation of responsibilities, librari
 
 ## Stacks
 
-See [docs/stacks/INDEX.md](../../../docs/stacks/INDEX.md).
+See [docs/stack.md](../../../docs/stack.md).

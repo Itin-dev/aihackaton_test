@@ -77,6 +77,19 @@ else
   echo "WARN: pre-commit not found"
 fi
 
+# Stack dependencies (FastAPI + React)
+if command -v uv &>/dev/null; then
+  (cd services/api && uv sync --frozen) && echo "api dependencies ready"
+else
+  echo "WARN: uv missing (brew install uv) — api dependencies not installed"
+fi
+if command -v npm &>/dev/null; then
+  npm --prefix apps/web ci --no-audit --no-fund && echo "web dependencies ready"
+else
+  echo "WARN: node/npm missing (brew install node) — web dependencies not installed"
+fi
+[ -f .env ] || { cp .env.example .env && echo "created .env from .env.example — add OPENROUTER_API_KEY"; }
+
 install_recommended_skills() {
   bash scripts/install-recommended-skills.sh || echo "WARN: recommended skills install had errors (ok offline)"
 }
@@ -97,6 +110,6 @@ bash scripts/doctor.sh || true
 echo ""
 echo "Bootstrap complete."
 echo "Next:"
-echo "  1. Pick a stack: docs/stacks/INDEX.md"
-echo "  2. Add code under services/ apps/ (or src/)"
+echo "  1. Add OPENROUTER_API_KEY to .env"
+echo "  2. make api   (terminal 1)  +  make web   (terminal 2) → http://localhost:5173"
 echo "  3. Work on a feature branch — hooks + CI are automatic"

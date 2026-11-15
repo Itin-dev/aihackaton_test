@@ -1,5 +1,5 @@
 # Convenience shortcuts — hooks/CI still call scripts/validate.sh directly.
-.PHONY: check bootstrap hooks
+.PHONY: check bootstrap doctor api web
 
 check:
 	bash scripts/validate.sh
@@ -7,6 +7,11 @@ check:
 bootstrap:
 	bash scripts/bootstrap.sh
 
-hooks:
-	git config core.hooksPath .githooks
-	chmod +x .githooks/*
+doctor:
+	bash scripts/doctor.sh
+
+api:  ## FastAPI on http://localhost:8000 (auto-reload)
+	cd services/api && uv run uvicorn app.main:app --reload
+
+web:  ## Vite dev server on http://localhost:5173 (proxies /api to :8000)
+	npm --prefix apps/web run dev
