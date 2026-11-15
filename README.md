@@ -41,6 +41,8 @@ Claude Code runs the doctor quietly at every session start and tells you what is
 
 Work on a branch, open a PR, merge it yourself once the `validate` check is green.
 Merges are announced in Discord. Details: [docs/gitops.md](docs/gitops.md).
+Agents can post questions to the team channel with `bash scripts/ask-team.sh` — setup in
+[docs/gitops.md](docs/gitops.md#team-questions-channel).
 
 ## Voice capture
 

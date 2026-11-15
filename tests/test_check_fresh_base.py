@@ -1,17 +1,22 @@
 """Tests for scripts/check-fresh-base.sh (branch must contain the latest origin/main)."""
 
+import os
 import subprocess
 import tempfile
 import unittest
 from pathlib import Path
 
 SCRIPT = Path(__file__).resolve().parent.parent / "scripts" / "check-fresh-base.sh"
+# Git hooks export GIT_DIR / GIT_INDEX_FILE (absolute inside a worktree); drop them so the
+# throwaway test repos are used instead of the repo running the hook.
+ENV = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
 
 
 def git(cwd: Path, *args: str) -> str:
     result = subprocess.run(
         ["git", "-c", "user.name=t", "-c", "user.email=t@t", "-c", "core.hooksPath=/dev/null", *args],
         cwd=cwd,
+        env=ENV,
         capture_output=True,
         text=True,
         check=True,
@@ -20,7 +25,9 @@ def git(cwd: Path, *args: str) -> str:
 
 
 def run_check(cwd: Path, *args: str) -> subprocess.CompletedProcess:
-    return subprocess.run(["bash", str(SCRIPT), *args], cwd=cwd, capture_output=True, text=True)
+    return subprocess.run(
+        ["bash", str(SCRIPT), *args], cwd=cwd, env=ENV, capture_output=True, text=True
+    )
 
 
 class CheckFreshBaseTest(unittest.TestCase):
@@ -92,6 +99,7 @@ class CheckFreshBaseTest(unittest.TestCase):
         result = subprocess.run(
             ["git", "-c", "core.hooksPath=.githooks", "checkout", "-q", *args],
             cwd=self.me,
+            env=ENV,
             capture_output=True,
             text=True,
             check=True,
